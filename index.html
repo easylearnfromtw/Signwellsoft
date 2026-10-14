@@ -491,6 +491,74 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   .sg-scroll{display:none}
 }
 
+
+/* Mobile Lite: preserve the editorial/brand system without expensive WebGL. */
+html.mobile-lite [data-pin="spin"]{height:auto!important}
+html.mobile-lite [data-pin="spin"]>.pin__stage{position:relative;inset:auto;height:auto;min-height:0;overflow:hidden}
+html.mobile-lite [data-pin="spin"] .open{position:relative;inset:auto;min-height:100svh;height:auto;transform:none!important;visibility:visible!important}
+html.mobile-lite [data-pin="spin"] .spin,
+html.mobile-lite [data-pin="spin"] .wipe,
+html.mobile-lite [data-pin="metro"],
+html.mobile-lite [data-pin="stack"],
+html.mobile-lite [data-pin="saga"]{display:none!important}
+html.mobile-lite .glass{background:rgba(242,243,247,.95);-webkit-backdrop-filter:none!important;backdrop-filter:none!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 10px 28px -17px rgba(11,11,14,.4)}
+html.mobile-lite[data-ui="dark"] .glass{background:rgba(34,34,41,.96)}
+html.mobile-lite .blobs i{animation:none!important}
+html.mobile-lite .lens__view{filter:none!important}
+html.mobile-lite .cbox__wall{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html.mobile-lite .rv,.mobile-lite .rv.is-wait{filter:none!important}
+html.mobile-lite .rv.is-wait{transform:translateY(10px)}
+html.mobile-lite .dock{box-shadow:0 12px 28px -14px rgba(11,11,14,.4)}
+.lite-section{position:relative;padding:clamp(66px,12vw,110px) 0;background:#fff;color:#0b0b0e}
+.lite-section--ink{background:#111116;color:#f9f9fb}
+.lite-section--mist{background:#eef0f4;color:#0b0b0e}
+.lite-section__head{display:grid;gap:14px;margin-bottom:32px}
+.lite-section__head .mono{color:#7c7f8b}
+.lite-section--ink .lite-section__head .mono{color:#aaabb3}
+.lite-section__head h2{font:900 clamp(32px,9vw,48px)/1.18 var(--f-cn);letter-spacing:-.045em;text-wrap:balance}
+.lite-section__head p{font-size:14px;line-height:1.85;color:#60616c;max-width:52ch}
+.lite-section--ink .lite-section__head p{color:#b6b7c0}
+.lite-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lite-card{min-width:0;overflow:hidden;border:1px solid rgba(11,11,14,.09);border-radius:18px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:10px;text-align:left;box-shadow:0 12px 30px -26px rgba(11,11,14,.3)}
+.lite-card--wide{grid-column:1/-1}
+.lite-card__art{display:block;aspect-ratio:16/10;overflow:hidden;background:#eef0f4;border-radius:11px}
+.lite-card__art>img,.lite-card__art>svg{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.lite-card__art svg{max-width:100%}
+.lite-card__num{font:600 10px/1.6 var(--f-mono);letter-spacing:.12em;color:#7c7c86}
+.lite-card h3{font:900 18px/1.35 var(--f-cn);letter-spacing:-.01em;overflow-wrap:anywhere}
+.lite-card p{font-size:12px;line-height:1.7;color:#60616c;overflow-wrap:anywhere}
+.lite-card__foot{margin-top:auto;display:inline-flex;align-items:center;justify-content:space-between;gap:8px;color:#3159d5;font-size:11px;font-weight:800}
+.lite-work-list{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,72%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding-bottom:16px;overscroll-behavior-x:contain}
+.lite-work-list .lite-card{scroll-snap-align:start}
+.lite-work-list .lite-card__art{aspect-ratio:16/10}
+.lite-people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.lite-person{min-width:0;display:flex;flex-direction:column;justify-content:space-between;min-height:166px;gap:16px;padding:14px 12px;border-radius:14px;border:1px solid rgba(11,11,14,.08);text-align:left;background:var(--tone,#f7c6d9);color:#0b0b0e}
+.lite-person__n{font:600 10px/1.4 var(--f-mono);letter-spacing:.1em}
+.lite-person strong{display:block;font:900 clamp(17px,4.8vw,24px)/1.3 var(--f-cn);word-break:keep-all}
+.lite-person small{font-size:11px;line-height:1.45;font-weight:700;color:#35353d;margin-top:4px}
+.lite-story{display:grid;gap:12px}
+.lite-story__row{padding:24px 22px;border-radius:18px;background:white;border-left:5px solid var(--tone,#ffd84d);box-shadow:0 16px 32px -26px rgba(11,11,14,.4)}
+.lite-story__row .mono{font-size:10px;color:#797b84;letter-spacing:.12em}
+.lite-story__row h3{font:900 26px/1.3 var(--f-cn);margin-top:10px}
+.lite-story__row p{font-size:14px;line-height:1.85;color:#565762;margin-top:9px}
+.lite-story__row:last-child{background:#101015;color:#fff;border-left-color:#3d6bff}
+.lite-story__row:last-child p{color:#c3c3cb}
+.lite-story__row:last-child .mono{color:#b3b3bc}
+.lite-section--ink .lite-card{background:#f7f7f8}
+.lite-section--ink .lite-card__art{background:#e9eaf0}
+.lite-section--ink .lite-card h3{color:#0b0b0e}
+.lite-section--ink .lite-card__art svg{display:block;width:100%;height:100%}
+.lite-divider{border:none;border-top:1px solid #dddde4;margin:42px 0}
+.lite-person:focus-visible,.lite-card:focus-visible{outline:3px solid #3d6bff;outline-offset:3px}
+@media(max-width:390px){
+ .lite-grid{gap:9px}
+ .lite-card{padding:11px}
+ .lite-card h3{font-size:16px}
+ .lite-people{gap:7px}
+ .lite-person{padding:12px 9px;min-height:158px}
+ .lite-person strong{font-size:17px}
+}
+
 /* ---------------- footer ---------------- */
 .foot{position:relative;background:var(--ink);color:var(--on-ink);padding-block:clamp(80px,10vw,140px) calc(40px + env(safe-area-inset-bottom,0px))}
 .foot .foot__wm{white-space:nowrap;font:900 clamp(38px,11.2vw,206px)/.84 var(--f-display);font-stretch:125%;letter-spacing:-.025em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.3);margin-left:-.04em}
@@ -1072,7 +1140,11 @@ const E={
 };
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root=document.documentElement;
+/* Run a visual, fully navigable Lite site on mobile without loading Three.js.
+   Append ?full3d=1 only for opt-in troubleshooting. */
+const MOBILE_LITE=matchMedia('(max-width:760px)').matches && new URLSearchParams(location.search).get('full3d')!=='1';
 root.classList.add('js');
+if(MOBILE_LITE){root.classList.add('mobile-lite','no-gl');root.dataset.renderMode='lite'}
 const V={w:innerWidth,h:innerHeight,mob:innerWidth<=760,dpr:Math.min(devicePixelRatio||1,2)};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ARW='<svg viewBox="0 0 16 16"><use href="#i-arrow"/></svg>', NE='<svg viewBox="0 0 16 16"><use href="#i-ne"/></svg>';
@@ -1080,7 +1152,7 @@ const ARW='<svg viewBox="0 0 16 16"><use href="#i-arrow"/></svg>', NE='<svg view
 /* ---- pinned scroll timelines ---- */
 class Pin{
   constructor(el,segs){this.el=el;this.segs=segs;this.total=segs.reduce((a,s)=>a+s[1],0);this.sy=0;this.top=0;this.len=0;this.unit=1;this.starts={};let a=0;for(const[n,l]of segs){this.starts[n]=a;a+=l}}
-  size(){this.unit=V.h/100;this.len=this.total*this.unit;this.el.style.height=(this.len+V.h)+'px'}
+  size(){this.unit=V.h/100;if(MOBILE_LITE){this.len=0;this.el.style.height='auto';return}this.len=this.total*this.unit;this.el.style.height=(this.len+V.h)+'px'}
   measure(){this.top=this.el.getBoundingClientRect().top+scrollY}
   raw(){return clamp(scrollY-this.top,0,this.len)}
   near(){const r=scrollY-this.top;return r>-V.h*1.1&&r<this.len+V.h*1.1}
@@ -1557,6 +1629,44 @@ const Saga=(()=>{
 })();
 
 /* ============ main: layout, chrome, loop ============ */
+/* Minimal mobile presentation: every chapter remains available without WebGL. */
+if(MOBILE_LITE){
+  const wrapHead=(fig,title,description)=>`<header class="lite-section__head"><p class="mono">${fig} — SIGNWELL</p><h2>${title}</h2><p>${description}</p></header>`;
+  const section=(kind,title,fig,description,theme='')=>{
+    const el=document.createElement('section');el.className='lite-section'+(theme?' lite-section--'+theme:'');
+    el.innerHTML=`<div class="wrap">${wrapHead(fig,title,description)}<div class="lite-content"></div></div>`;
+    return el;
+  };
+  const workSection=section('works','作品與技術展示','01 / SELECTED WORKS','每一個作品都是品牌敘事、視覺美學與技術工程的整合。左右滑動查看作品。');
+  const workCards=WORKS.map((w,i)=>{
+    const art=w.img?`<img loading="lazy" decoding="async" src="${previewSrc(w.img)}" alt="${esc(w.t)} 網站預覽">`:w.art();
+    return `<article class="lite-card"><span class="lite-card__num">PROJECT / ${pad(i+1)}</span><span class="lite-card__art">${art}</span><h3>${esc(w.t)}</h3><p>${esc(w.d)}</p>${w.url?`<a class="lite-card__foot" href="${w.url}" target="_blank" rel="noopener noreferrer">開啟網站 <span aria-hidden="true">↗</span></a>`:'<span class="lite-card__foot">內部作品展示</span>'}</article>`;
+  }).join('');
+  const content=workSection.querySelector('.lite-content');
+  content.innerHTML=`<div class="lite-work-list" aria-label="網站作品，左右滑動探索">${workCards}</div><hr class="lite-divider"><div id="team">${wrapHead('02 / PEOPLE','認識我們的團隊','由經營管理、網站設計與數位產品開發共同構成的三人團隊。')}</div>`;
+  const peopleList=document.createElement('div');peopleList.className='lite-people';
+  peopleList.innerHTML=PEOPLE.map((p,i)=>`<button type="button" class="lite-person" style="--tone:${p.tone}" data-lite-person="${i}" aria-label="查看${esc(p.n)}完整介紹"><span class="lite-person__n">TEAM / ${pad(i+1)}</span><div><strong>${esc(p.n)}</strong><small>${esc(p.r)}</small></div></button>`).join('');
+  content.appendChild(peopleList);
+  content.insertAdjacentHTML('beforeend',`<hr class="lite-divider">${wrapHead('03 / SERVICES','軟體服務','從品牌概念到網站設計、內容管理與持續優化，兼顧美學與實用。')}<div class="lite-grid">${SERVICES.map((v,i)=>`<button type="button" class="lite-card" data-lite-service="${i}"><span class="lite-card__num">S${pad(i+1)} · ${esc(v.tag)}</span><h3>${esc(v.t)}</h3><p>${esc(v.d)}</p><span class="lite-card__foot">查看服務詳情 ↗</span></button>`).join('')}</div>`);
+  workSection.addEventListener('click',e=>{
+    const person=e.target.closest('[data-lite-person]'),service=e.target.closest('[data-lite-service]');
+    if(person){const i=+person.dataset.litePerson;Dlg.show(detailHTML('p',PEOPLE[i],i,PEOPLE.length),person)}
+    if(service){const i=+service.dataset.liteService;Dlg.show(detailHTML('s',SERVICES[i],i,SERVICES.length),service)}
+  });
+  $('[data-pin="spin"]').insertAdjacentElement('afterend',workSection);
+  const effects=section('effects','互動美學，不必等待渲染','04 / VISUAL EFFECTS','手機版以輕量示意呈現設計語言，桌機可體驗完整沉浸式互動。','mist');
+  effects.querySelector('.lite-content').innerHTML=`<div class="lite-grid">${EFFECTS.map((m,i)=>`<article class="lite-card"><span class="lite-card__num">M${pad(i+1)} · ${esc(m.en)}</span><span class="lite-card__art">${m.fig()}</span><h3>${esc(m.n)}</h3><p>${esc(m.d)}</p></article>`).join('')}</div>`;
+  $('[data-pin="metro"]').insertAdjacentElement('afterend',effects);
+  const modules=section('modules','功能與體驗，清楚呈現','05 / DIGITAL MODULES','不讓重型 3D 場景拖慢手機。每張模組卡都能獨立閱讀，沒有交錯穿插的動畫。','ink');
+  modules.id='modules-lite';
+  modules.querySelector('.lite-content').innerHTML=`<div class="lite-grid">${FUNCS.map((m,i)=>`<article class="lite-card"><span class="lite-card__num">M${pad(i+6)} · ${esc(m.en)}</span><span class="lite-card__art">${m.fig()}</span><h3>${esc(m.n)}</h3><p>${esc(m.d)}</p></article>`).join('')}</div>`;
+  $('[data-pin="stack"]').insertAdjacentElement('afterend',modules);
+  const group=section('group','認識欣緯集團','06 / THE GROUP','三個階段，一個共同的專業與美學標準。保留品牌故事，也讓手機閱讀更順暢。','mist');
+  group.id='history';
+  $('[data-pin="saga"]').id='history-3d';
+  group.querySelector('.lite-content').innerHTML=`<div class="lite-story">${SAGA.map((x,i)=>`<article class="lite-story__row" style="--tone:${[C.yellow,C.pink,C.blue][i]}"><span class="mono">${esc(x.n)} · ${esc(x.en)}</span><h3>${esc(x.cn)}</h3><p>${esc(x.d)}</p></article>`).join('')}</div>`;
+  $('[data-pin="saga"]').insertAdjacentElement('afterend',group);
+}
 const KEYS=['top','team','specialties','partners','history'];
 const navCap=new Capsule($('.seg--nav'),{onPick:k=>go(KEYS[k])});
 const dockCap=new Capsule($('[data-dock]'),{onPick:k=>go(KEYS[k])});
@@ -1565,7 +1675,7 @@ let scrollMax=0;
 function targetY(key){
   switch(key){
     case'top':return 0;
-    case'team':return Spin.yTeam();
+    case'team':return MOBILE_LITE&&$('#team')?$('#team').getBoundingClientRect().top+scrollY:Spin.yTeam();
     case'contact':return $('#contact').getBoundingClientRect().top+scrollY;
     default:{const el=$('#'+key);return el?el.getBoundingClientRect().top+scrollY:0}
   }
@@ -1576,7 +1686,7 @@ document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!
 function layout(){
   V.w=innerWidth;V.h=innerHeight;V.mob=V.w<=760;
   PINS.forEach(p=>p.size());PINS.forEach(p=>p.measure());
-  MODS.forEach(m=>m.geo&&m.geo());Play.geo();
+  if(!MOBILE_LITE)MODS.forEach(m=>m.geo&&m.geo());Play.geo();
   PINS.forEach(p=>p.measure());
   KEYS.concat('contact').forEach(k=>TY[k]=targetY(k));
   zones.length=0;
@@ -1607,11 +1717,12 @@ function frame(now){
   raf=0;if(document.hidden)return;
   const frameMs=now-last,dt=Math.min(.05,Math.max(.001,frameMs/1000));last=now;const t=now/1000;
   Play.update();
-  for(const m of MODS){if(m.active())m.update(dt,t)}
-  if(window.GLFRAME)window.GLFRAME(dt,t,frameMs);
+  if(!MOBILE_LITE){for(const m of MODS){if(m.active())m.update(dt,t)}if(window.GLFRAME)window.GLFRAME(dt,t,frameMs)}
   chrome();
-  raf=requestAnimationFrame(frame);
+  if(!MOBILE_LITE)raf=requestAnimationFrame(frame);
 }
+function scheduleLiteFrame(){if(MOBILE_LITE&&!raf&&!document.hidden)raf=requestAnimationFrame(frame)}
+if(MOBILE_LITE){addEventListener('scroll',scheduleLiteFrame,{passive:true});addEventListener('pointermove',scheduleLiteFrame,{passive:true});addEventListener('pointerdown',scheduleLiteFrame,{passive:true});addEventListener('pointerup',scheduleLiteFrame,{passive:true});addEventListener('resize',scheduleLiteFrame,{passive:true})}
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden){if(raf)cancelAnimationFrame(raf);raf=0}
   else{last=performance.now();if(!raf)raf=requestAnimationFrame(frame)}
@@ -1625,8 +1736,9 @@ if(!document.hidden)raf=requestAnimationFrame(frame);
 
 </script>
 <script type="module">
-/* ============ GL core: one canvas, one context, lent to whichever stage is on screen ============ */
-import * as THREE from './assets/three.module.min.js';
+/* One WebGL context on desktop; mobile Lite never imports the 670 KB 3D engine. */
+if(!MOBILE_LITE){
+const THREE=await import('./assets/three.module.min.js');
 const T=THREE;
 const UA=navigator.userAgent;
 const MOB=V.mob||/Mobi|Android|iPhone|iPad/i.test(UA);
@@ -1634,8 +1746,8 @@ const CORES=navigator.hardwareConcurrency||4;
 const TIER=MOB?((CORES>=6&&(devicePixelRatio||1)>=2)?1:0):2;
 /* Keep the short edge at QHD resolution, including portrait phone stages.
    Reduce geometry/effects on phones instead of shrinking the drawing buffer. */
-const Q={shadow:2048,tex:1,seg:[.35,.5,1][TIER]};
-const TARGET_FPS=110,SHORT_EDGE=1440;
+const Q={shadow:MOB?512:2048,tex:MOB?.75:1,seg:[.3,.45,1][TIER]};
+const TARGET_FPS=MOB?60:110,SHORT_EDGE=MOB?850:1440;
 let dpr=1;
 const PERF=window.SIGNWELL_PERF={targetFPS:TARGET_FPS,frameBudgetMs:1000/TARGET_FPS,profile:MOB?'mobile-light':'desktop',width:0,height:0,fps:0,frameMs:0,cpuMs:0,drawCalls:0,triangles:0,stage:null};
 /* Optional on-device check. Nothing is added to the normal visitor interface. */
@@ -1714,7 +1826,7 @@ function vis(s){const t=stageTop(s.pin);return 1-Math.min(1,Math.abs(t)/V.h)}
 function size(){
   if(!cur)return;const sw=cur.slot.clientWidth,sh=cur.slot.clientHeight;if(!sw||!sh)return;
   const limit=Math.min(R.capabilities.maxTextureSize,R.getContext().getParameter(R.getContext().MAX_RENDERBUFFER_SIZE));
-  dpr=Math.min(Math.max(1,SHORT_EDGE/Math.min(sw,sh)),limit/Math.max(sw,sh));
+  dpr=MOB?Math.min(1.5,SHORT_EDGE/Math.min(sw,sh),limit/Math.max(sw,sh)):Math.min(Math.max(1,SHORT_EDGE/Math.min(sw,sh)),limit/Math.max(sw,sh));
   const nw=Math.round(sw*dpr),nh=Math.round(sh*dpr);
   if(nw!==W||nh!==H){W=nw;H=nh;R.setSize(W,H,false)}
   PERF.width=W;PERF.height=H;cur.resize(sw,sh);
@@ -2314,6 +2426,7 @@ GLX.add(S);
 
 
 window.GLFRAME=frame;root.classList.add('gl-on');root.classList.remove('no-gl');
+} // end desktop / explicit ?full3d=1 renderer
 
 </script>
 </body>
