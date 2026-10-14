@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SIGNWELL 欣緯集團</title>
-<meta name="description" content="欣緯集團 SIGNWELL：欣緯科技、欣緯生醫與欣緯軟體。設計作品、團隊、服務、合作夥伴、網站模組與企業沿革。">
+<title>SIGNWELL SOFTWARE 欣緯軟體｜網站設計・互動開發</title>
+<meta name="description" content="欣緯軟體 SIGNWELL SOFTWARE：網站設計、3D 互動、內容管理系統與客製化數位工具。探索作品、團隊、服務與合作。">
 <meta name="theme-color" content="#0b0b0e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%230b0b0e'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='800' fill='white'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -298,16 +298,16 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
 .lens__in{position:absolute;left:0;top:0;transform-origin:0 0;background:var(--paper)}
 .lens__in svg{width:100%;height:100%}
 .lens::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(70% 50% at 32% 18%,rgba(255,255,255,.75),rgba(255,255,255,0) 60%);mix-blend-mode:screen;pointer-events:none}
-.demo--box{min-height:330px;background:linear-gradient(180deg,var(--mist) 0%,var(--paper) 100%);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:flex-end;justify-content:center;padding:0 12px 30px;perspective:900px}
-.cbox{position:relative;width:min(760px,100%);height:250px;transform-style:preserve-3d}
+.demo--box{min-height:390px;background:linear-gradient(180deg,var(--mist) 0%,var(--paper) 100%);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:flex-end;justify-content:center;padding:0 12px 30px;perspective:900px}
+.cbox{position:relative;width:min(760px,100%);height:300px;transform-style:preserve-3d}
 .cbox__wall{position:absolute;left:0;right:0;bottom:0;height:120px;border-radius:0 0 18px 18px;z-index:9;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(238,240,244,.85));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 0 0 1px rgba(11,11,14,.08),0 20px 30px -20px rgba(11,11,14,.4);pointer-events:none}
 .cbox__wall::after{content:"SIGNWELL · PEOPLE";position:absolute;left:18px;bottom:14px;font:600 10px var(--f-mono);letter-spacing:.24em;color:var(--fg-3)}
-.ncard{position:absolute;bottom:20px;width:calc(20% - 8px);aspect-ratio:3/4.2;border-radius:12px;background:var(--paper);box-shadow:0 0 0 1px rgba(11,11,14,.08),0 16px 30px -18px rgba(11,11,14,.5);padding:10px;display:flex;flex-direction:column;text-align:left;transform:translateY(var(--y,0px)) rotate(var(--r,0deg));transition:transform .6s var(--ease-spring),translate .6s var(--ease-spring),box-shadow .4s;animation:fall .9s var(--ease-spring) backwards;animation-delay:calc(var(--i) * 110ms)}
+.ncard{position:absolute;bottom:20px;width:min(28%,160px);aspect-ratio:3/4.2;border-radius:12px;background:var(--paper);box-shadow:0 0 0 1px rgba(11,11,14,.08),0 16px 30px -18px rgba(11,11,14,.5);padding:10px;display:flex;flex-direction:column;text-align:left;transform:translate(-50%,var(--y,0px)) rotate(var(--r,0deg));transition:transform .6s var(--ease-spring),translate .6s var(--ease-spring),box-shadow .4s;animation:fall .9s var(--ease-spring) backwards;animation-delay:calc(var(--i) * 110ms)}
 .ncard::before{content:"";height:5px;border-radius:3px;background:var(--tone);margin-bottom:8px}
 .ncard b{margin-top:auto;font-size:clamp(14px,2vw,20px);font-weight:900;letter-spacing:.06em}
 .ncard small{font-size:11px;font-weight:700;color:var(--fg-2)}
 .ncard span{font:600 9px var(--f-mono);letter-spacing:.16em;color:var(--fg-3)}
-@keyframes fall{from{transform:translateY(-140%) rotate(-8deg);opacity:0}}
+@keyframes fall{from{transform:translate(-50%,-140%) rotate(-8deg);opacity:0}}
 .demo--box.is-armed .ncard{animation:none}
 @media (max-width:620px){.ncard{padding:7px}.ncard small{display:none}.ncard b{font-size:13px}}
 
@@ -492,6 +492,33 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   *,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;transition-duration:.001ms!important}
   .js .rv.is-wait{opacity:1;transform:none;filter:none}
 }
+
+/* Responsive collision / overflow corrections */
+.open__foot > *,.sg-top > *,.foot__grid > *,.tile__h > *{min-width:0}
+.facing__d,.sg-body,.mt-card p,.foot p,.open__lead,.tile p{overflow-wrap:anywhere}
+.dlg__sheet{max-height:min(calc(100dvh - 40px),calc(100svh - 40px))}
+@media(max-width:760px){
+  .open__mid{min-width:0}
+  .open__cn span{font-size:10px;letter-spacing:.08em}
+  .facing,.minfo,.sg-text,.mt-card{overscroll-behavior:contain}
+  .facing,.minfo{max-height:calc(100svh - 210px);overflow-y:auto}
+  .sg-text{max-height:calc(100svh - 205px);overflow-y:auto}
+  .foot .foot__wm{font-size:clamp(30px,10.5vw,90px);font-stretch:100%;letter-spacing:-.035em}
+  .tile__h{flex-wrap:wrap}
+}
+@media(max-width:420px){
+  .sg-top{align-items:flex-start;flex-direction:column;gap:3px}
+  .sg-names{width:100%;justify-content:space-between}
+  .sg-names button{padding:0 5px;font-size:9px}
+  .sg-line{top:calc(134px + env(safe-area-inset-top,0px))}
+}
+@media(max-height:640px) and (max-width:760px){
+  .open{padding-top:calc(66px + env(safe-area-inset-top,0px));padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .open__mid{gap:8px}
+  .open__foot{gap:8px}
+  .facing,.minfo,.sg-text{max-height:calc(100svh - 180px)}
+  .mt-title__kw{display:none}
+}
 </style>
 
 </head>
@@ -554,16 +581,16 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <section class="open" aria-labelledby="open-t">
       <span class="regmark a" aria-hidden="true"><i></i></span>
       <span class="regmark b" aria-hidden="true"><i></i></span>
-      <div class="open__meta mono"><span>FIG. 00 — SIGNWELL GROUP</span><span>電子零件 · 醫學知識 · 軟體</span></div>
+      <div class="open__meta mono"><span>FIG. 00 — SIGNWELL SOFTWARE</span><span>Design · Development · Digital</span></div>
       <div class="open__mid">
-        <h1 class="wm" id="open-t"><span class="sr">SIGNWELL 欣緯集團</span><span aria-hidden="true" class="wm__w"><span class="wm__l" style="--i:0">S</span><span class="wm__l" style="--i:1">I</span><span class="wm__l" style="--i:2">G</span><span class="wm__l" style="--i:3">N</span><span class="wm__l" style="--i:4">W</span><span class="wm__l" style="--i:5">E</span><span class="wm__l" style="--i:6">L</span><span class="wm__l" style="--i:7">L</span></span><i class="wm__dot" aria-hidden="true"></i></h1>
-        <div class="open__cn"><b>欣緯集團</b><span class="mono">Technology · Bio · Software</span></div>
+        <h1 class="wm" id="open-t"><span class="sr">SIGNWELL SOFTWARE 欣緯軟體</span><span aria-hidden="true" class="wm__w"><span class="wm__l" style="--i:0">S</span><span class="wm__l" style="--i:1">I</span><span class="wm__l" style="--i:2">G</span><span class="wm__l" style="--i:3">N</span><span class="wm__l" style="--i:4">W</span><span class="wm__l" style="--i:5">E</span><span class="wm__l" style="--i:6">L</span><span class="wm__l" style="--i:7">L</span></span><i class="wm__dot" aria-hidden="true"></i></h1>
+        <div class="open__cn"><b>欣緯軟體</b><span class="mono">Web Design · Creative Development</span></div>
       </div>
       <div>
         <div class="ruler" aria-hidden="true"></div>
         <div class="open__foot">
-          <p class="chain"><span>欣緯科技</span><i aria-hidden="true"></i><span>欣緯集團</span><i aria-hidden="true"></i><span>欣緯軟體</span></p>
-          <p class="open__lead">從電子零件貿易出發，延伸到醫學知識與軟體。</p>
+          <p class="chain"><span>品牌設計</span><i aria-hidden="true"></i><span>互動開發</span><i aria-hidden="true"></i><span>數位系統</span></p>
+          <p class="open__lead">從想法到上線，把網站做成品牌真正用得上的數位體驗。</p>
           <span class="cue mono" aria-hidden="true"><i></i>Scroll</span>
         </div>
       </div>
@@ -572,7 +599,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <div class="wipe" aria-hidden="true"></div>
 
     <section class="spin" aria-labelledby="spin-t">
-      <h2 class="sr" id="spin-t">設計、員工與服務</h2>
+      <h2 class="sr" id="spin-t">網站作品、團隊與軟體服務</h2>
       <div class="gl-slot" data-spin-scene></div>
       <ol class="cardlist" data-cards aria-label="設計、員工與服務"></ol>
       <canvas class="streak" aria-hidden="true"></canvas>
@@ -596,7 +623,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     </header>
     <ol class="plist" data-partners></ol>
     <div class="pfoot">
-      <p class="lead">供應端與商務合作，經由正式商務信箱洽談。</p>
+      <p class="lead">品牌、設計與網站合作，歡迎透過電子郵件洽談。</p>
       <div class="mailbox"><code>signwell.com.tw@gmail.com</code><button class="copy" type="button" data-copy="signwell.com.tw@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製信箱</button></div>
     </div>
   </div>
@@ -668,7 +695,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
           <div class="lens-src" data-lens-src></div>
           <div class="lens" data-lens aria-hidden="true"><div class="lens__in"></div></div>
         </div>
-        <p class="note">拖曳鏡片看料號。鏡內放大 1.8 倍，邊緣用 SVG 位移貼圖折射。</p>
+        <p class="note">拖曳鏡片探索介面元件。鏡內放大 1.8 倍，邊緣用 SVG 位移貼圖折射。</p>
       </article>
       <article class="tile tile--c rv" style="--d:2">
         <div class="tile__h"><h3>名片收納盒</h3><span class="mono">M06</span></div>
@@ -685,30 +712,30 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <header class="sec-head">
       <p class="eyebrow"><b>FIG. 04</b>History</p>
       <h2 class="h2 rv" id="hist-t">企業沿革<em>Continuity of leadership</em></h2>
-      <p class="lead rv" style="--d:1">欣緯科技有限公司由不同階段的經營團隊接續發展。</p>
+      <p class="lead rv" style="--d:1">欣緯軟體從既有品牌與實作經驗出發，整合網站設計、互動開發及數位內容。</p>
     </header>
     <div class="hist__grid">
       <ol class="tl rv">
-        <li><span>Previous<br>representative</span><div><b>林衞國</b><p>欣緯科技有限公司歷任代表人。</p></div></li>
-        <li><span>Representative</span><div><b>王曉芬</b><p>代表人／董事長。欣緯科技有限公司創辦人暨董事。</p></div></li>
+        <li><span>Founder</span><div><b>王曉芬</b><p>欣緯科技有限公司創辦人暨董事，支持數位服務發展。</p></div></li>
+        <li><span>Software team</span><div><b>林哲愷・林哲緯</b><p>欣緯軟體部門，負責網站設計、互動前端與專案開發。</p></div></li>
       </ol>
       <dl class="facts rv" style="--d:1">
-        <dt>公司名稱</dt><dd>欣緯科技有限公司</dd>
-        <dt>品牌</dt><dd>SIGNWELL 欣緯科技</dd>
+        <dt>營運單位</dt><dd>欣緯軟體 SIGNWELL SOFTWARE</dd>
+        <dt>所屬公司</dt><dd>欣緯科技有限公司</dd>
         <dt>公司統編</dt><dd>24389585</dd>
-        <dt>主要業務</dt><dd>電焊・電阻・電子零件・尋料與採購協作</dd>
+        <dt>核心服務</dt><dd>網站設計・互動前端・3D 體驗・內容後台</dd>
         <dt>商務信箱</dt><dd>signwell.com.tw@gmail.com</dd>
         <dt>公示資料</dt><dd><a href="https://findbiz.nat.gov.tw/fts/company/24389585" target="_blank" rel="noopener">前往經濟部公示資料 ↗</a></dd>
       </dl>
     </div>
     <div class="counts" data-counts>
-      <div class="count"><b data-count="337">337</b><span>項料號紀錄</span></div>
+      <div class="count"><b data-count="6">6</b><span>項數位服務</span></div>
       <div class="count"><b data-count="7">7</b><span>個網站作品</span></div>
-      <div class="count"><b data-count="5">5</b><span>位團隊成員</span></div>
+      <div class="count"><b data-count="3">3</b><span>位團隊成員</span></div>
       <div class="count"><b data-count="4">4</b><span>個合作夥伴</span></div>
     </div>
     <div class="next rv">
-      <p class="chain"><span>欣緯科技</span><i aria-hidden="true"></i><span>欣緯集團</span><i aria-hidden="true"></i><span>欣緯軟體</span></p>
+      <p class="chain"><span>品牌基礎</span><i aria-hidden="true"></i><span>多元作品</span><i aria-hidden="true"></i><span>欣緯軟體</span></p>
       <p>三個名字，一個一個看。往下捲動。</p>
     </div>
   </div>
@@ -740,14 +767,14 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <p class="foot__wm" aria-hidden="true">SIGNWELL</p>
     <div class="foot__grid">
       <div>
-        <h3>電子零件・商務合作</h3>
+        <h3>品牌與專案合作</h3>
         <div class="mailbox"><code>signwell.com.tw@gmail.com</code><button class="copy" type="button" data-copy="signwell.com.tw@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>
-        <p style="margin-top:10px">料號、規格、數量或專案需求，都可以來信。</p>
+        <p style="margin-top:10px">企業網站、品牌頁面與數位專案合作，都可以來信。</p>
       </div>
       <div>
-        <h3>欣緯軟體・網站</h3>
+        <h3>網站設計・互動開發</h3>
         <div class="mailbox"><code>luca.sinwell@gmail.com</code><button class="copy" type="button" data-copy="luca.sinwell@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>
-        <p style="margin-top:10px">有網站的想法，可以先來信聊聊。部門目前籌備中。</p>
+        <p style="margin-top:10px">有網站或客製化系統的構想，歡迎來信討論。</p>
       </div>
       <div>
         <h3>公司</h3>
@@ -755,7 +782,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
         <p style="margin-top:10px"><a class="ext" href="https://findbiz.nat.gov.tw/fts/company/24389585" target="_blank" rel="noopener">前往經濟部公示資料 ↗</a></p>
       </div>
     </div>
-    <div class="foot__base mono"><span>© 2026 SIGNWELL 欣緯科技有限公司</span><a href="#top" data-go="top">回到開頭 ↑</a></div>
+    <div class="foot__base mono"><span>© 2026 SIGNWELL SOFTWARE · 欣緯科技有限公司</span><a href="#top" data-go="top">回到開頭 ↑</a></div>
   </div>
 </footer>
 
@@ -775,7 +802,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
 </svg>
 <script>
 "use strict";
-/* ============ content (verbatim from 欣緯科技官網 / 欣緯軟體頁) ============ */
+/* ============ SIGNWELL SOFTWARE content ============ */
 const C = {ink:'#0b0b0e',paper:'#ffffff',mist:'#eef0f4',yellow:'#ffd84d',blue:'#3d6bff',blue2:'#dfe6ff',pink:'#f7c6d9',pink2:'#fde9f1'};
 const BG = (c)=>`<rect x="-300" y="-300" width="800" height="800" fill="${c}"/>`;
 const M = (x,y,s,t,fill=C.ink,anchor='start',size=8.5)=>`<text class="svgm" x="${x}" y="${y}" font-size="${size}" fill="${fill}" text-anchor="${anchor}">${t}</text>`;
@@ -843,16 +870,16 @@ function artMusic(){
 
 /* ---- service line art (viewBox 200×140) ---- */
 const IC = {
-  weld:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><path d="M22 112h62l12-34h8l12 34h62v14H22z"/><path d="M96 78l4-10 4 10"/><path d="M150 6l-46 56"/><path d="M156 0l-10-7-8 11 10 7z"/><path d="M100 66l-6 6m12-6 8 4m-10 6 2 9m-10-8-7 6" stroke-width="1.8"/></g><circle cx="100" cy="68" r="3.4" fill="currentColor"/>`,
-  res:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 70h44M148 70h44"/><path d="M52 56q0-12 12-12h72q12 0 12 12v28q0 12-12 12H64q-12 0-12-12z"/></g><g><rect x="72" y="44" width="8" height="52" fill="#0b0b0e"/><rect x="90" y="44" width="8" height="52" fill="#3d6bff"/><rect x="106" y="44" width="8" height="52" fill="#ffd84d" stroke="#0b0b0e" stroke-width="1"/><rect x="126" y="44" width="6" height="52" fill="#0b0b0e" opacity=".45"/></g>`,
-  chip:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="62" y="32" width="76" height="76" rx="4"/></g><circle cx="76" cy="46" r="3.6" fill="currentColor"/><g stroke="currentColor" stroke-width="2.2" stroke-linecap="round">${[0,1,2,3,4].map(i=>`<path d="M${72+i*14} 32v-12M${72+i*14} 108v12M62 ${42+i*14}h-12M138 ${42+i*14}h12"/>`).join('')}</g>`,
-  loupe:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><rect x="20" y="52" width="56" height="34" rx="3"/><path d="M32 52v-9M48 52v-9M64 52v-9M32 86v9M64 86v9"/><circle cx="118" cy="68" r="40"/><path d="M147 97l26 26" stroke-width="7"/></g><circle cx="98" cy="64" r="5" fill="currentColor"/><path d="M96 80h28M96 89h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>`,
-  reel:`<g fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="70" cy="66" r="52"/><circle cx="70" cy="66" r="42" stroke-width="1.1" opacity=".6"/><circle cx="70" cy="66" r="12"/><path d="M70 120h120M70 136h120"/></g><g fill="currentColor">${[0,1,2,3,4].map(i=>`<circle cx="${86+i*22}" cy="125" r="2.2"/>`).join('')}</g><g fill="none" stroke="currentColor" stroke-width="1.5">${[0,1,2,3].map(i=>`<rect x="${92+i*22}" y="129" width="12" height="6"/>`).join('')}</g>`,
-  code:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><rect x="24" y="18" width="152" height="104" rx="8"/><path d="M24 38h152"/><path d="M82 62 64 78l18 16M118 62l18 16-18 16M106 56l-12 44"/></g><g fill="currentColor"><circle cx="36" cy="28" r="3"/><circle cx="46" cy="28" r="3"/><circle cx="56" cy="28" r="3"/></g>`
+  weld:`<g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"><path d="M30 100V33h140v74H30zM50 53h68M50 68h88M50 83h43"/><circle cx="147" cy="83" r="13"/><path d="m140 83 5 5 10-12"/></g>`,
+  res:`<g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><rect x="22" y="20" width="116" height="82" rx="8"/><path d="M22 39h116M55 115h50M80 102v13"/><rect x="146" y="51" width="32" height="65" rx="7"/></g>`,
+  chip:`<g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="m100 12 65 33v55l-65 30-65-30V45zM35 45l65 34 65-34M100 79v51M67 29l65 34M67 63l65-34"/></g>`,
+  loupe:`<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="89" cy="59" r="35"/><path d="m116 87 47 41M72 59h34M89 42v34"/></g>`,
+  reel:`<g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><rect x="22" y="18" width="156" height="108" rx="8"/><path d="M22 42h156M66 42v84M78 58h81M78 75h65M78 92h74M78 109h51"/></g>`,
+  code:`<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"><rect x="24" y="18" width="152" height="104" rx="8"/><path d="M24 38h152M82 62 64 78l18 16M118 62l18 16-18 16M106 56l-12 44"/></g>`
 };
 
 const WORKS = [
-  {t:'欣緯科技 SIGNWELL 企業網站',d:'電子零件貿易公司官網：3D 零件檢視、337 項料號紀錄與線上詢價工具。',url:'https://easylearnfromtw.github.io/signwelltec/',u:'easylearnfromtw.github.io/signwelltec',img:'assets/w/signwelltec.webp',art:artTec},
+  {t:'欣緯科技 SIGNWELL 企業網站',d:'品牌形象網站案例：以 3D 互動、客製化元件及動態導覽呈現企業資訊。',url:'https://easylearnfromtw.github.io/signwelltec/',u:'easylearnfromtw.github.io/signwelltec',img:'assets/w/signwelltec.webp',art:artTec},
   {t:'欣緯生醫 SIGNWELL BIO 醫療網站',d:'醫學白話文平台：臨床筆記、主題探討與醫學整理。',url:'https://easylearnfromtw.github.io/signwellbio/',u:'easylearnfromtw.github.io/signwellbio',img:'assets/w/signwellbio.webp',art:artBio},
   {t:'欣緯生醫 CMS 後台',d:'自建的內容後台，公開站與後台都放在 GitHub Pages。',url:null,u:'內部系統・不對外開放',img:'assets/w/cms.webp',art:artCms},
   {t:'閒台文 Tai-Wan Way 用遊戲學台灣式中文',d:'給外國人學台灣華語：繁體字、注音與拼音、真實生活情境，加上 20 關卡牌闖關。',url:'https://easylearnfromtw.github.io/Taiwanway/',u:'easylearnfromtw.github.io/Taiwanway',img:'assets/w/taiwanway.webp',art:artWay},
@@ -861,19 +888,17 @@ const WORKS = [
   {t:'MUSICTOWN- 音樂播放網站',d:'依城市、風格與心情挑歌的音樂播放網站。',url:'https://easylearnfromtw.github.io/musictown/',u:'easylearnfromtw.github.io/musictown',img:'assets/w/musictown.webp',art:artMusic}
 ];
 const PEOPLE = [
-  {n:'王曉芬',r:'代表人／董事長',dept:'代表人 / 管理',tone:C.yellow,cred:['龍華科技大學 資管系','B&O台灣總代理 丹意信實公司 管理部經理','欣緯科技有限公司創辦人暨董事']},
-  {n:'李心為',r:'業務部經理',dept:'業務部',tone:C.blue,cred:['文化大學廣告學系 學士','廣告學系 碩士'],phone:'0922273911'},
-  {n:'王瑩家',r:'業務部經理',dept:'業務部',tone:C.blue,cred:['英文學系 學士','美歐基督書院','樂錚百貨商行 負責人']},
-  {n:'林哲愷',r:'部門經理',dept:'軟體暨生醫專業部門',tone:C.pink,cred:['再興中學','國立清華大學－經濟系','閒台文創辦人','欣緯生醫 創辦人'],site:'https://easylearnfromtw.github.io/test/chekai-portfolio/'},
-  {n:'林哲緯',r:'部門經理',dept:'軟體暨生醫專業部門',tone:C.pink,cred:['建國中學','中國醫藥大學－醫學系','文森筆記創辦人','欣緯生醫 主編']}
+  {n:'王曉芬',r:'創辦人／董事長',dept:'經營管理',tone:C.yellow,cred:['龍華科技大學 資管系','B&O台灣總代理 丹意信實公司 管理部經理','欣緯科技有限公司創辦人暨董事']},
+  {n:'林哲愷',r:'軟體部門經理',dept:'網站設計與開發',tone:C.blue,cred:['再興中學','國立清華大學－經濟系','閒台文創辦人','欣緯生醫 創辦人'],site:'https://easylearnfromtw.github.io/test/chekai-portfolio/'},
+  {n:'林哲緯',r:'軟體部門經理',dept:'數位產品與內容',tone:C.pink,cred:['建國中學','中國醫藥大學－醫學系','文森筆記創辦人','欣緯生醫 主編']}
 ];
 const SERVICES = [
-  {t:'電焊',en:'Welding components',d:'以電焊相關零件需求為主要業務之一，依實際料號、規格與採購條件確認。',tag:'CORE',ic:'weld',tone:C.yellow},
-  {t:'電阻',en:'Resistors',d:'承接電阻相關料件需求，依料號、規格、數量與專案條件進行確認。',tag:'CORE',ic:'res',tone:C.pink},
-  {t:'電子零件',en:'Electronic components',d:'業務涵蓋貼片二極體、DC-DC 轉換器、磁珠、電感、電源開關與 DC-DC 穩壓器。',tag:'6 CATEGORIES',ic:'chip',tone:C.blue2},
-  {t:'客製尋料',en:'Part sourcing',d:'針對既有料號、規格或專案需求進行尋料與採購協作。',tag:'SOURCING',ic:'loupe',tone:C.paper},
-  {t:'專案採購',en:'Project procurement',d:'從單一料號、規格需求，到專案型採購，依詢價與專案條件逐項確認。',tag:'PROJECT',ic:'reel',tone:C.mist},
-  {t:'網站設計與開發',en:'Websites · Software',d:'欣緯科技的軟體部門，做網站設計、前端開發與內容後台。部門目前籌備中。',tag:'籌備中',ic:'code',tone:C.blue,dark:true,mail:'luca.sinwell@gmail.com'}
+  {t:'品牌與網站規劃',en:'Digital strategy',d:'整理品牌定位、資訊架構與使用者旅程，建立可持續擴充的網站藍圖。',tag:'STRATEGY',ic:'weld',tone:C.yellow},
+  {t:'企業網站設計',en:'Web design',d:'從視覺系統、響應式介面到細節動效，打造符合品牌個性、手機與桌面都好用的網站。',tag:'DESIGN',ic:'res',tone:C.pink},
+  {t:'3D 互動前端',en:'Interactive 3D',d:'以 WebGL、動畫與互動敘事設計沉浸式網站，兼顧效能與內容可讀性。',tag:'INTERACTIVE',ic:'chip',tone:C.blue2},
+  {t:'內容管理後台',en:'CMS & workflows',d:'規劃文章編輯、草稿審核、內容發布與管理流程，協助團隊更新網站。',tag:'CMS',ic:'reel',tone:C.paper},
+  {t:'客製化數位工具',en:'Custom web apps',d:'依營運流程設計表單、會員功能、學習工具與資料視覺化等系統。',tag:'PRODUCT',ic:'loupe',tone:C.mist},
+  {t:'網站維護與優化',en:'Maintenance & SEO',d:'改善介面、載入效率、搜尋呈現與跨裝置相容性，支援網站後續成長。',tag:'SUPPORT',ic:'code',tone:C.blue,dark:true,mail:'luca.sinwell@gmail.com'}
 ];
 const PARTNERS = [
   {n:'琺騏國際行銷有限公司',en:'Company',tag:'企業',tone:C.yellow},
@@ -903,23 +928,23 @@ const MODULES = [
     fig:()=>F(`<rect x="60" y="60" width="332" height="50" rx="25" fill="#fff" stroke="${C.line}"/>`+[0,1,2].map(i=>`<rect x="${66+i*28}" y="66" width="104" height="38" rx="19" fill="${C.ink}" opacity="${[.08,.16,.3][i]}"/>`).join('')+`<rect x="174" y="66" width="104" height="38" rx="19" fill="${C.ink}"/>`+
       ['等角','上視','底視'].map((s,i)=>T(118+i*108,91,s,13,i==1?'#fff':C.ink,'middle',700)).join('')+
       `<path d="M60 200C130 200 150 140 210 140S260 172 300 158 360 150 392 150" fill="none" stroke="${C.blue}" stroke-width="2.4"/><path d="M60 150h332" stroke="${C.ink}" stroke-dasharray="3 5" opacity=".4"/>`+M(60,226,0,'SPRING  cubic-bezier(.34,1.56,.64,1)',C.ink,'start',9)+M(392,140,0,'OVERSHOOT',C.blue,'end',9))},
-  {n:'折射鏡片',en:'Refraction lens',d:'可拖曳的放大鏡。鏡內放大內容，邊緣用 SVG 位移貼圖做出折射。',use:['欣緯科技官網','欣緯生醫'],tone:C.yellow,
-    fig:()=>F(BG(C.paper)+Array.from({length:7},(_,r)=>M(40,52+r*26,0,['FM104SGP   400 V · 1 A','GS5581LAF  DC-DC','HCB3216KF-800T30','PIN252012A-1R0M','SY6280AAC  SWITCH','SY8286ARAC DC-DC','SMD · 3216 · 2520'][r],'#80818a','start',11)).join('')+
-      `<defs><clipPath id="lc"><circle cx="300" cy="120" r="72"/></clipPath></defs><g clip-path="url(#lc)"><rect x="200" y="20" width="200" height="200" fill="#fff"/>`+M(300,112,0,'HCB3216KF',C.ink,'middle',22)+M(300,140,0,'-800T30',C.ink,'middle',22)+`</g><circle cx="300" cy="120" r="72" fill="none" stroke="${C.ink}" stroke-width="1.4"/><circle cx="300" cy="120" r="66" fill="none" stroke="#fff" stroke-width="5" opacity=".9"/><path d="M252 82a62 62 0 0 1 40-24" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/>`+dim(372,120,420,120,'×1.8',420,112,'end')+M(300,226,0,'feDisplacementMap',C.ink,'middle',9))},
+  {n:'折射鏡片',en:'Refraction lens',d:'可拖曳的放大鏡。鏡內放大介面元件，邊緣透過 SVG 位移貼圖呈現折射效果。',use:['欣緯軟體','互動展示'],tone:C.yellow,
+    fig:()=>F(BG(C.paper)+['NAVIGATION','INTERACTIVE 3D','CONTENT EDITOR','ANALYTICS','SEO STUDIO'].map((t,i)=>M(40,58+i*30,0,t,'#80818a','start',12)).join('')+
+      `<defs><clipPath id="lc"><circle cx="310" cy="122" r="70"/></clipPath></defs><g clip-path="url(#lc)"><rect x="225" y="35" width="170" height="170" fill="#fff"/>`+M(310,112,0,'INTERACTIVE',C.ink,'middle',17)+M(310,142,0,'DESIGN',C.ink,'middle',22)+
+      `</g><circle cx="310" cy="122" r="70" fill="none" stroke="${C.ink}" stroke-width="1.6"/>`+dim(380,122,422,122,'×1.8',422,114,'end'))},
   {n:'果凍玻璃圈 Hero',en:'Jelly glass ring',d:'即時光線追蹤的玻璃圓環，有菲涅耳反射與色散；可拖曳旋轉，點一下會 Q 彈。',use:['欣緯生醫','欣緯科技官網','本頁沿革'],tone:C.pink,
     fig:()=>F(`<defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${C.pink2}"/><stop offset="1" stop-color="${C.blue2}"/></linearGradient><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="${C.pink}"/><stop offset=".7" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="${C.blue}"/></linearGradient></defs><rect width="452" height="252" fill="url(#pg)"/>`+
       `<ellipse cx="226" cy="122" rx="104" ry="70" fill="none" stroke="url(#rg)" stroke-width="30" opacity=".85"/>`+T(226,138,'SIGNWELL',44,C.ink,'middle',900)+`<path d="M122 122a104 70 0 0 0 208 0" fill="none" stroke="url(#rg)" stroke-width="30" opacity=".75"/><ellipse cx="226" cy="122" rx="104" ry="70" fill="none" stroke="#fff" stroke-width="1.5" opacity=".9"/><path d="M150 82a96 62 0 0 1 60-24" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none"/>`+M(226,232,0,'WEBGL · SDF RAY TRACING · FRESNEL',C.ink,'middle',9),C.pink2)},
-  {n:'名片收納盒',en:'Card box',d:'團隊名片依序落入盒中，滑過時浮起，點開放大成完整經歷。',use:['欣緯科技官網','本頁'],tone:C.blue,
-    fig:()=>F([0,1,2,3,4].map(i=>`<rect x="${96+i*52}" y="${i==2?38:62+Math.abs(i-2)*6}" width="64" height="88" rx="6" fill="#fff" stroke="${C.ink}" stroke-opacity=".2"/><rect x="${102+i*52}" y="${(i==2?38:62+Math.abs(i-2)*6)+6}" width="52" height="4" rx="2" fill="${[C.yellow,C.blue,C.blue,C.pink,C.pink][i]}"/>`).join('')+
+  {n:'名片收納盒',en:'Card box',d:'團隊名片依序落入盒中，滑過時浮起，點開放大成完整經歷。',use:['欣緯軟體','本頁'],tone:C.blue,
+    fig:()=>F([0,1,2].map(i=>`<rect x="${110+i*86}" y="${i===1?38:58}" width="74" height="94" rx="7" fill="#fff" stroke="${C.ink}" stroke-opacity=".2"/><rect x="${118+i*86}" y="${(i===1?38:58)+7}" width="58" height="4" rx="2" fill="${[C.yellow,C.blue,C.pink][i]}"/>`).join('')+
       `<path d="M70 120h312l-22 96H92z" fill="#fff" fill-opacity=".65" stroke="${C.ink}" stroke-opacity=".25"/><path d="M70 120h312" stroke="#fff" stroke-width="3"/>`+M(226,190,0,'SIGNWELL · PEOPLE',C.ink,'middle',9)+dim(226,38,226,18,'HOVER ↑',234,22))},
-  {n:'3D 零件檢視器',en:'Package viewer',d:'依料號封裝建模，可旋轉，切換等角、上視、底視、側視與尺寸標註。',use:['欣緯科技官網'],tone:C.yellow,
-    fig:()=>F(`<path d="M150 150l90-44 90 44-90 44z" fill="#1c1c22"/><path d="M150 150v18l90 44v-18zM330 150v18l-90 44v-18z" fill="#0b0b0e"/>`+
-      [0,1,2].map(i=>`<path d="M${170+i*28} ${160+i*14}l-14 7v10l14-7z" fill="#b8bcc6" stroke="${C.ink}" stroke-width=".8"/>`).join('')+[0,1].map(i=>`<path d="M${284+i*28} ${130+i*14}l14 7v10l-14-7z" fill="#b8bcc6" stroke="${C.ink}" stroke-width=".8"/>`).join('')+`<circle cx="196" cy="146" r="4" fill="#fff" opacity=".5"/>`+
-      dim(150,196,240,240,'2.9 mm',150,236)+`<g>${['等角','上視','底視','側視'].map((s,i)=>`<rect x="${60+i*84}" y="30" width="76" height="30" rx="15" fill="${i==0?C.ink:'#fff'}"/>`+T(98+i*84,50,s,12,i==0?'#fff':C.ink,'middle',700)).join('')}</g>`+M(422,226,0,'SOT-23-5 · ILLUSTRATIVE',C.ink,'end',9))},
-  {n:'線上詢價工具',en:'RFQ builder',d:'四步驟填寫，支援多項料件與貼上 BOM，送出前預覽詢價信件。',use:['欣緯科技官網'],tone:C.pink,
-    fig:()=>F(BG(C.paper)+[0,1,2,3].map(i=>`<circle cx="${90+i*90}" cy="44" r="14" fill="${i<2?C.ink:'#fff'}" stroke="${C.ink}" stroke-width="1.5"/>`+M(90+i*90,48,0,`${i+1}`,i<2?'#fff':C.ink,'middle',10)+(i<3?`<path d="M${106+i*90} 44h58" stroke="${C.ink}" stroke-width="1.5" ${i>0?'stroke-dasharray="3 4"':''}/>`:'')).join('')+
-      `<rect x="40" y="82" width="372" height="96" rx="10" fill="${C.mist}"/>`+['FM104SGP\t1000','SY8286ARAC\t500','HCB3216KF-800T30\t2000'].map((s,i)=>M(58,110+i*24,0,s.replace('\t','   ×'),C.ink,'start',11)).join('')+M(400,104,0,'PASTE BOM','#80818a','end',9)+
-      `<rect x="282" y="196" width="130" height="34" rx="17" fill="${C.ink}"/>`+T(347,218,'預覽詢價信件',12,'#fff','middle',700)+`<rect x="40" y="196" width="120" height="34" rx="17" fill="none" stroke="${C.ink}"/>`+T(100,218,'加入詢價單',12,C.ink,'middle',700))},
+  {n:'3D 互動展示器',en:'3D showcase',d:'用即時 3D 模型、視角切換與互動標記呈現產品、空間或品牌故事。',use:['欣緯軟體','作品展示'],tone:C.yellow,
+    fig:()=>F(`<path d="m226 68 94 48-94 50-94-50z" fill="#3d6bff" stroke="${C.ink}" stroke-width="2"/><path d="m132 116 94 50v38l-94-50z" fill="#244ab7"/><path d="m320 116-94 50v38l94-50z" fill="#192e75"/>`+
+       ['等角','上視','側視','細節'].map((t,i)=>`<rect x="${60+i*84}" y="24" width="76" height="30" rx="15" fill="${i===0?C.ink:'#fff'}"/>`+T(98+i*84,44,t,12,i===0?'#fff':C.ink,'middle',700)).join(''))},
+  {n:'專案需求表單',en:'Project brief builder',d:'分步蒐集品牌定位、功能需求與時程，送出前可以預覽需求摘要。',use:['欣緯軟體','專案洽談'],tone:C.pink,
+    fig:()=>F(BG(C.paper)+[0,1,2,3].map(i=>`<circle cx="${90+i*90}" cy="44" r="14" fill="${i<2?C.ink:'#fff'}" stroke="${C.ink}"/>`+M(90+i*90,48,0,`${i+1}`,i<2?'#fff':C.ink,'middle',10)).join('')+
+      `<rect x="40" y="82" width="372" height="96" rx="10" fill="${C.mist}"/>`+['品牌形象網站','3D 互動動畫','CMS 內容管理'].map((t,i)=>T(58,108+i*26,t,12,C.ink,'start',700)).join('')+
+      `<rect x="282" y="196" width="130" height="34" rx="17" fill="${C.ink}"/>`+T(347,218,'預覽需求摘要',12,'#fff','middle',700))},
   {n:'內容後台 CMS',en:'Content backend',d:'登入後撰寫文章、存草稿，再按下發佈。公開站與後台都放在 GitHub Pages。',use:['欣緯生醫'],tone:C.blue,
     fig:()=>F(`<rect x="0" y="0" width="452" height="252" fill="${C.ink}"/><rect x="40" y="30" width="372" height="196" rx="12" fill="#1c1c22" stroke="rgba(255,255,255,.12)"/><rect x="52" y="44" width="86" height="170" rx="8" fill="rgba(255,255,255,.05)"/>`+
       ['選題','待審稿','草稿','已發佈'].map((s,i)=>T(66,72+i*28,s,12,i==2?'#fff':'rgba(255,255,255,.45)','start',700)).join('')+`<rect x="58" y="${72+2*28-17}" width="4" height="22" rx="2" fill="${C.yellow}"/>`+
@@ -934,9 +959,9 @@ const MODULES = [
 C.line='rgba(11,11,14,.14)';
 
 const SAGA = [
-  {n:'01',cn:'欣緯科技',en:'SIGNWELL Technology',d:'電子零件貿易公司。把需求，連接到合適的零件與商務流程。',facts:[['主要業務','電焊・電阻・電子零件・尋料與採購協作'],['料號紀錄','337 項'],['公司統編','24389585']]},
-  {n:'02',cn:'欣緯集團',en:'SIGNWELL Group',d:'以欣緯科技為起點，延伸出醫學知識平台欣緯生醫與軟體部門。',facts:[['成員','欣緯科技・欣緯生醫・欣緯軟體'],['欣緯生醫','醫學白話文平台：臨床筆記、主題探討與醫學整理。'],['代表人','王曉芬']]},
-  {n:'03',cn:'欣緯軟體',en:'SIGNWELL Software',d:'欣緯科技的軟體部門，做網站設計、前端開發與內容後台。',facts:[['部門經理','林哲愷・林哲緯'],['網站作品','7 個網站'],['目前狀態','籌備中']]}
+  {n:'01',cn:'欣緯科技',en:'SIGNWELL Technology',d:'既有企業品牌與經營經驗，是數位服務的基礎。',facts:[['公司統編','24389585'],['核心精神','專業・效率・長期合作']]},
+  {n:'02',cn:'欣緯集團',en:'SIGNWELL Group',d:'整合科技、生醫內容與網站服務，串連不同領域的數位需求。',facts:[['品牌方向','科技・生醫・數位服務'],['代表人','王曉芬']]},
+  {n:'03',cn:'欣緯軟體',en:'SIGNWELL Software',d:'專注網站設計、互動開發、數位內容與可持續維護的專屬工具。',facts:[['部門經理','林哲愷・林哲緯'],['網站作品','7 個網站'],['服務項目','6 項數位服務']]}
 ];
 const KW = [
   ['BLUR 18PX','SATURATE 185%','RIM HIGHLIGHT'],
@@ -1079,7 +1104,7 @@ const Dlg=(()=>{
 
 function detailHTML(type,it,k,n){
   if(type==='d')return `<div class="dlg__art">${workArt(it)}</div><div class="dlg__body"><p class="dlg__k mono"><b class="tag">DESIGN</b>${pad(k+1)} / ${pad(n)}</p><h3 class="dlg__t" id="dlg-t">${esc(it.t)}</h3><p class="dlg__d">${esc(it.d)}</p><div class="dlg__a">${it.url?`<a class="btn" href="${it.url}" target="_blank" rel="noopener">開啟網站${NE}</a><span class="mono" style="align-self:center;color:var(--fg-3);word-break:break-all">${esc(it.u)}</span>`:`<span class="tag" style="color:var(--fg-2)">${esc(it.u)}</span>`}</div></div>`;
-  if(type==='p')return `<div class="dlg__band" style="--tone:${it.tone}"></div><div class="dlg__body" style="padding-top:22px"><p class="dlg__k mono"><b class="tag">PEOPLE</b>${pad(k+1)} / ${pad(n)}</p><h3 class="dlg__t" id="dlg-t">${esc(it.n)}</h3><p class="dlg__s">${esc(it.r)}・${esc(it.dept)}</p><ol class="dlg__cred">${it.cred.map((c,i)=>`<li><span>${pad(i+1)}</span>${esc(c)}</li>`).join('')}</ol><div class="dlg__a">${it.phone?`<button class="btn" type="button" data-phone><svg viewBox="0 0 16 16"><use href="#i-phone"/></svg>顯示聯絡電話</button>`:''}${it.site?`<a class="btn" href="${it.site}" target="_blank" rel="noopener">前往個人網站${NE}</a>`:''}</div>${it.phone?`<div class="phone"><code>${it.phone}</code><button class="copy" type="button" data-copy="${it.phone}"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>`:''}<p class="mono" style="margin-top:22px;color:var(--fg-3)">SIGNWELL · 欣緯科技有限公司</p></div>`;
+  if(type==='p')return `<div class="dlg__band" style="--tone:${it.tone}"></div><div class="dlg__body" style="padding-top:22px"><p class="dlg__k mono"><b class="tag">PEOPLE</b>${pad(k+1)} / ${pad(n)}</p><h3 class="dlg__t" id="dlg-t">${esc(it.n)}</h3><p class="dlg__s">${esc(it.r)}・${esc(it.dept)}</p><ol class="dlg__cred">${it.cred.map((c,i)=>`<li><span>${pad(i+1)}</span>${esc(c)}</li>`).join('')}</ol><div class="dlg__a">${it.phone?`<button class="btn" type="button" data-phone><svg viewBox="0 0 16 16"><use href="#i-phone"/></svg>顯示聯絡電話</button>`:''}${it.site?`<a class="btn" href="${it.site}" target="_blank" rel="noopener">前往個人網站${NE}</a>`:''}</div>${it.phone?`<div class="phone"><code>${it.phone}</code><button class="copy" type="button" data-copy="${it.phone}"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>`:''}<p class="mono" style="margin-top:22px;color:var(--fg-3)">SIGNWELL SOFTWARE · 欣緯科技有限公司</p></div>`;
   const mail=it.mail||'signwell.com.tw@gmail.com';
   return `<div class="dlg__art" style="background:${it.tone};color:${it.dark?'#fff':'#0b0b0e'}"><svg viewBox="0 0 200 140" preserveAspectRatio="xMidYMid meet" style="inset:24px;width:calc(100% - 48px);height:calc(100% - 48px)">${IC[it.ic]}</svg></div><div class="dlg__body"><p class="dlg__k mono"><b class="tag">SERVICE</b>${pad(k+1)} / ${pad(n)} · ${esc(it.tag)}</p><h3 class="dlg__t" id="dlg-t">${esc(it.t)}</h3><p class="dlg__s mono">${esc(it.en)}</p><p class="dlg__d">${esc(it.d)}</p><div class="dlg__a"><div class="mailbox"><code>${mail}</code><button class="copy" type="button" data-copy="${mail}"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製信箱</button></div></div></div>`;
 }
@@ -1096,14 +1121,14 @@ $$('[data-counts]').forEach(n=>cio.observe(n));
 $('[data-partners]').innerHTML=PARTNERS.map((p,i)=>`<li class="prow rv" style="--d:${i};--tone:${p.tone}"><span class="prow__i">${pad(i+1)}</span><span class="prow__n">${esc(p.n)}<small>${p.en}</small></span><span class="tag">${p.tag}</span><span class="prow__mk" aria-hidden="true"></span></li>`).join('');
 
 /* ============ 00 opening + 01 the spin: timeline, HUD and state for the GL cylinder ============ */
-const SPIN={on:false,rot:0,ringRot:0,tilt:9,roll:0,intro:0,out:0,items:[],counts:[7,5,6]};
+const SPIN={on:false,rot:0,ringRot:0,tilt:9,roll:0,intro:0,out:0,items:[],counts:CHAPTERS.map(ch=>ch.list.length)};
 const Spin=(()=>{
   const pinEl=$('[data-pin="spin"]'),openEl=$('.open',pinEl),wipe=$('.wipe',pinEl),spinEl=$('.spin',pinEl),dot=$('.wm__dot',pinEl);
   const slot=$('.gl-slot',pinEl),cvs=$('.streak',pinEl),ctx=cvs.getContext('2d'),list=$('[data-cards]',pinEl);
   const chapsEl=$('[data-chaps]'),facing=$('[data-facing]'),fin=$('.facing__in',facing);
   const items=SPIN.items;CHAPTERS.forEach((ch,ci)=>ch.list.forEach((it,k)=>items.push({ci,k,it,ch})));
-  const N=items.length,STEP=360/N,PER=28,counts=SPIN.counts,starts=[0,7,12];
-  const pin=new Pin(pinEl,[['wipe',90],['intro',80],['c0',7*PER],['w0',50],['c1',5*PER],['w1',50],['c2',6*PER],['outro',60]]);
+  const N=items.length,STEP=360/N,PER=28,counts=SPIN.counts,starts=[0,counts[0],counts[0]+counts[1]];
+  const pin=new Pin(pinEl,[['wipe',90],['intro',80],['c0',counts[0]*PER],['w0',50],['c1',counts[1]*PER],['w1',50],['c2',counts[2]*PER],['outro',60]]);
   PINS.push(pin);
 
   /* the cards as an accessible list; in GL mode it is visually hidden, without GL it becomes a scroller */
@@ -1162,12 +1187,12 @@ const Spin=(()=>{
     switch(st.n){
       case'wipe':intro=0;break;
       case'intro':intro=st.u;break;
-      case'c0':s=step(st.u,7);break;
-      case'w0':s=6+E.io3(st.u);whip=E.io3(st.u);wU=st.u;break;
-      case'c1':s=7+step(st.u,5);whip=1;break;
-      case'w1':s=11+E.io3(st.u);whip=1+E.io3(st.u);wU=st.u;break;
-      case'c2':s=12+step(st.u,6);whip=2;break;
-      case'outro':s=17;whip=2;out=st.u;break;
+      case'c0':s=step(st.u,counts[0]);break;
+      case'w0':s=starts[1]-1+E.io3(st.u);whip=E.io3(st.u);wU=st.u;break;
+      case'c1':s=starts[1]+step(st.u,counts[1]);whip=1;break;
+      case'w1':s=starts[2]-1+E.io3(st.u);whip=1+E.io3(st.u);wU=st.u;break;
+      case'c2':s=starts[2]+step(st.u,counts[2]);whip=2;break;
+      case'outro':s=N-1;whip=2;out=st.u;break;
     }
     if(RM)whip=0;
     if(!dragging)drag*=Math.exp(-dt*2.6);
@@ -1350,9 +1375,9 @@ const Play=(()=>{
   new IntersectionObserver(es=>es.forEach(e=>blobs.classList.toggle('is-vis',e.isIntersecting))).observe(gd);
   /* refraction lens */
   const ld=$('[data-lensdemo]'),src=$('[data-lens-src]',ld),lens=$('[data-lens]',ld);
-  const parts=[['FM104SGP','貼片二極體','400 V · 1 A · SMD'],['GS5581LAF','DC-DC 轉換器','SOT-23-5'],['HCB3216KF-800T30','磁珠','3216'],['PIN252012A-1R0M','電感','2520'],['SY6280AAC','電源開關','SOT-23-5'],['SY8286ARAC','DC-DC 穩壓器','QFN 3×3-20']];
-  const sheet=`<svg viewBox="0 0 520 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="520" height="300" fill="#fff"/><path d="M0 40h520" stroke="#0b0b0e" stroke-width="1.5"/>`+M(20,28,0,'FIG. 04 — PART NUMBER REFERENCE','#80818a','start',9)+M(500,28,0,'SIGNWELL','#0b0b0e','end',9)+
-    parts.map((p,i)=>`<rect x="0" y="${48+i*40}" width="520" height="40" fill="${i%2?'#fff':'#f4f5f8'}"/>`+M(20,72+i*40,0,p[0],'#0b0b0e','start',13)+T(250,73+i*40,p[1],13,'#54555d','start',700)+M(500,72+i*40,0,p[2],'#80818a','end',10)).join('')+`<rect x="380" y="232" width="120" height="44" rx="22" fill="${C.yellow}"/>`+T(440,259,'加入詢價單',13,'#0b0b0e','middle',900)+`</svg>`;
+  const parts=[['NAVIGATION','導覽設計','LIQUID GLASS'],['INTERACTION','動態互動','WEBGL'],['CONTENT CMS','內容管理','EDITOR'],['DASHBOARD','數據圖表','ANALYTICS'],['SEO STUDIO','搜尋優化','METADATA'],['WEB APP','客製工具','WORKFLOW']];
+  const sheet=`<svg viewBox="0 0 520 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="520" height="300" fill="#fff"/><path d="M0 40h520" stroke="#0b0b0e" stroke-width="1.5"/>`+M(20,28,0,'FIG. 04 — UI COMPONENT REFERENCE','#80818a','start',9)+M(500,28,0,'SIGNWELL','#0b0b0e','end',9)+
+    parts.map((p,i)=>`<rect x="0" y="${48+i*40}" width="520" height="40" fill="${i%2?'#fff':'#f4f5f8'}"/>`+M(20,72+i*40,0,p[0],'#0b0b0e','start',13)+T(250,73+i*40,p[1],13,'#54555d','start',700)+M(500,72+i*40,0,p[2],'#80818a','end',10)).join('')+`<rect x="380" y="232" width="120" height="44" rx="22" fill="${C.yellow}"/>`+T(440,259,'查看互動元件',13,'#0b0b0e','middle',900)+`</svg>`;
   src.innerHTML=sheet;
   const view=document.createElement('div');view.className='lens__view';view.style.cssText='position:absolute;inset:0;border-radius:50%;overflow:hidden;filter:url(#lensRefract)';
   const inner=$('.lens__in',lens);lens.insertBefore(view,inner);view.appendChild(inner);inner.innerHTML=sheet;
@@ -1400,9 +1425,9 @@ const Play=(()=>{
   new ResizeObserver(geo).observe(ld);
   /* card box */
   const bd=$('[data-boxdemo]'),box=$('.cbox',bd);bd.classList.add('is-armed');
-  const ncards=PEOPLE.map((p,i)=>{const b=document.createElement('button');b.type='button';b.className='ncard';b.style.cssText=`--i:${i};--tone:${p.tone};left:calc(${i*20}% + 4px)`;b.innerHTML=`<span>${pad(i+1)} / 05</span><b>${esc(p.n)}</b><small>${esc(p.r)}</small>`;b.setAttribute('aria-label',`${p.n}，${p.r}，查看經歷`);box.insertBefore(b,$('.cbox__wall',box));b.addEventListener('click',()=>Dlg.show(detailHTML('p',p,i,5),b));return b});
+  const ncards=PEOPLE.map((p,i)=>{const b=document.createElement('button');b.type='button';b.className='ncard';b.style.cssText=`--i:${i};--tone:${p.tone};left:${(i+.5)*100/PEOPLE.length}%`;b.innerHTML=`<span>${pad(i+1)} / ${pad(PEOPLE.length)}</span><b>${esc(p.n)}</b><small>${esc(p.r)}</small>`;b.setAttribute('aria-label',`${p.n}，${p.r}，查看經歷`);box.insertBefore(b,$('.cbox__wall',box));b.addEventListener('click',()=>Dlg.show(detailHTML('p',p,i,PEOPLE.length),b));return b});
   function rest(){ncards.forEach((b,i)=>{b.style.setProperty('--y',`${-i*9}px`);b.style.setProperty('--r','0deg');b.style.zIndex=i})}
-  function hover(h){ncards.forEach((b,i)=>{const d=i-h;b.style.setProperty('--y',i===h?'-96px':`${-i*9+Math.min(Math.abs(d),2)*6}px`);b.style.setProperty('--r',i===h?'0deg':`${clamp(d,-2,2)*2.4}deg`);b.style.translate=i===h?'0 0':`${Math.sign(d)*10}px 0`})}
+  function hover(h){ncards.forEach((b,i)=>{const d=i-h;b.style.setProperty('--y',i===h?'-52px':`${-i*9+Math.min(Math.abs(d),2)*6}px`);b.style.setProperty('--r',i===h?'0deg':`${clamp(d,-2,2)*2.4}deg`);b.style.translate=i===h?'0 0':`${Math.sign(d)*10}px 0`})}
   rest();
   ncards.forEach((b,i)=>{b.addEventListener('pointerenter',()=>hover(i));b.addEventListener('focus',()=>hover(i))});
   box.addEventListener('pointerleave',()=>{rest();ncards.forEach(b=>b.style.translate='')});
@@ -1418,10 +1443,10 @@ const Saga=(()=>{
   PINS.push(pin);
   const typeEl=$('[data-sg-type]',pinEl),cnEl=$('[data-sg-cn]',pinEl),bodyEl=$('[data-sg-body]',pinEl),factsEl=$('[data-sg-facts]',pinEl),nEl=$('[data-sg-n]',pinEl),textEl=$('.sg-text',pinEl),names=$$('[data-sg-name]',pinEl),bar=$('.sg-line i',pinEl);
   const CH=[
-    {n:'000',type:'Three names, one thread.',cn:'欣緯科技・欣緯集團・欣緯軟體',body:'一間電子零件貿易公司，怎麼長成三個名字？往下捲動，從第一個料號開始看。',facts:[]},
-    {n:'001',type:'It started with one part number.',cn:'欣緯科技',body:'欣緯科技從電子零件貿易起步。一個料號、一份規格、一次核對，把需求接到合適的供應，也把合作的信任一點一點疊起來。',facts:[['主要業務','電焊・電阻・電子零件'],['料號紀錄','337 項']]},
-    {n:'002',type:'One name, three directions.',cn:'欣緯集團',body:'零件之外，同樣的細心延伸到醫學知識與數位工具。欣緯生醫上線，團隊從貿易走向內容與技術，欣緯成為一個集團。',facts:[['旗下','欣緯科技・欣緯生醫・欣緯軟體'],['欣緯生醫','醫學白話文平台']]},
-    {n:'003',type:'Build sites. Ship modules. Keep them running.',cn:'欣緯軟體',body:'做過七個網站之後，軟體部門開始籌備：把玻璃介面、3D 場景與內容後台，整理成可以交付給客戶的服務。',facts:[['部門經理','林哲愷・林哲緯'],['目前狀態','籌備中']]}
+    {n:'000',type:'Three chapters. One design vision.',cn:'品牌基礎・多元作品・欣緯軟體',body:'從企業經營基礎到數位作品累積，現在聚焦網站、互動與長期可用的數位工具。',facts:[]},
+    {n:'001',type:'Built on a real business.',cn:'欣緯科技',body:'由王曉芬創辦的欣緯科技，累積企業經營、客戶溝通與專案執行經驗。',facts:[['品牌基礎','欣緯科技有限公司'],['理念','專業・效率・信任']]},
+    {n:'002',type:'Ideas become digital products.',cn:'欣緯集團',body:'隨著醫學內容、互動網頁與不同數位專案成形，欣緯延伸出多元的產品服務。',facts:[['品牌方向','科技・生醫・軟體'],['內容平台','欣緯生醫']]},
+    {n:'003',type:'We design. We build. We refine.',cn:'欣緯軟體',body:'從視覺、互動到 CMS 與後續優化，以設計與程式實現可持續營運的網站。',facts:[['團隊','王曉芬・林哲愷・林哲緯'],['服務','網站設計・互動開發・CMS']]}
   ];
   let ci=-1;
   function setCh(i){
@@ -2058,7 +2083,7 @@ const slot=$('[data-pin="saga"] .gl-slot');
 let scene,camera,sun,blinds,slats,gridMat,dimMat,ribbon,rib,chrome,chromeU,slabs,tags,dash,CARDS,aspect=1;
 const dummy=new T.Object3D(),SP=[{x:-1.02,z:.62},{x:1.06,z:.62},{x:.02,z:-.95}];
 const NR=MOB?48:140;
-const PARTS=[['貼片二極體','FM104SGP'],['DC-DC 轉換器','GS5581LAF'],['磁珠','HCB3216KF-800T30'],['電感','PIN252012A-1R0M'],['電源開關','SY6280AAC'],['DC-DC 穩壓器','SY8286ARAC']];
+const PARTS=[['品牌企劃','BRAND STRATEGY'],['視覺設計','VISUAL SYSTEM'],['網站架構','SITE ARCHITECTURE'],['互動前端','FRONTEND'],['內容管理','CONTENT CMS'],['效能優化','WEB PERFORMANCE']];
 const BIO=[['臨床筆記','CLINICAL NOTES'],['主題探討','TOPICS'],['醫學整理','REVIEWS'],['電子報','NEWSLETTER'],['內容後台','CMS']];
 const SW=[['欣緯科技官網','SIGNWELLTEC'],['欣緯生醫','SIGNWELLBIO'],['CMS 後台','INTERNAL'],['閒台文','TAI-WAN WAY'],['個人網站範例','PORTFOLIO'],['VINCENT JOURNAL','AESTHETIC'],['MUSICTOWN','MUSIC']];
 const SHOTS=['signwelltec','signwellbio','cms','taiwanway','portfolio',null,'musictown'];
@@ -2088,7 +2113,7 @@ function dashTex(){
 }
 const P1=i=>({x:-.86+(i%3)*.86,z:-.29+Math.floor(i/3)*.54,s:1,ry:(i%2?.05:-.03)});
 function P2(c){const s=SP[c.g];if(c.g<2)return{x:s.x-.54+(c.i%3)*.54,z:s.z-.2+Math.floor(c.i/3)*.38,s:.62,ry:0};return{x:s.x-.66+(c.i%4)*.44,z:s.z-.2+Math.floor(c.i/4)*.38,s:.6,ry:0}}
-function P3(c){return{x:-.5+c.g*.9,z:-.68+c.i*.205,s:.92,ry:0,y:c.i*.007}}
+function P3(c){return{x:-.72+c.g*.95,z:-1.05+c.i*.38,s:.88,ry:0,y:0}}
 const lerpP=(a,b,t)=>({x:lerp(a.x,b.x,t),z:lerp(a.z,b.z,t),s:lerp(a.s,b.s,t),ry:lerp(a.ry,b.ry,t),y:lerp(a.y||0,b.y||0,t)});
 const KF={i:[0,7,12.5,1.35],c1:[36,38,11.2,.12],c2:[52,50,12.6,.08],c3:[22,27,8.6,.2]};
 const lk=(a,b,t)=>a.map((v,i)=>lerp(v,b[i],t));
