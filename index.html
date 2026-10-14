@@ -3,8 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>SIGNWELL SOFTWARE 欣緯軟體｜網站設計・互動開發</title>
-<meta name="description" content="欣緯軟體 SIGNWELL SOFTWARE：網站設計、3D 互動、內容管理系統與客製化數位工具。探索作品、團隊、服務與合作。">
+<title>欣緯軟體 SIGNWELL SOFTWARE｜美學驅動的數位設計與技術</title>
+<meta name="description" content="欣緯軟體 SIGNWELL SOFTWARE 專注設計美學、DISAI、WEB3D、CMS 串連 AI、社群及美學優化，以專業集團整合視野打造品牌數位體驗。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="欣緯軟體 SIGNWELL SOFTWARE｜美學 × 技術 × 品牌">
+<meta property="og:description" content="美學是起點，技術是底氣。認識欣緯集團的五項特色技術與數位作品。">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0b0b0e">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%230b0b0e'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='21' font-weight='800' fill='white'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -218,6 +223,46 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   .facing__a{margin-top:10px}
   .facing .btn{min-height:38px;font-size:12.5px}
 }
+
+
+/* ===== SIGNWELL / FEATURED TECHNOLOGIES ===== */
+.special{position:relative;background:#111116;color:#f8f8f9;padding:clamp(86px,10vw,150px) 0;isolation:isolate}
+.special:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 80% 0%,rgba(61,107,255,.18),transparent 45%)}
+.special>.wrap{position:relative}
+.special__top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(250px,.7fr);gap:30px clamp(30px,6vw,100px);align-items:end;margin-bottom:clamp(42px,6vw,74px)}
+.special__eyebrow{grid-column:1/-1;display:flex;align-items:center;gap:12px;color:var(--yellow)}
+.special__eyebrow:before{content:"";width:9px;height:9px;background:var(--yellow);border-radius:50%}
+.special__title{font:900 clamp(42px,6.4vw,92px)/1.12 var(--f-cn);letter-spacing:-.05em;max-width:850px;text-wrap:balance}
+.special__title span{display:block;margin-top:.12em;color:var(--pink)}
+.special__lead{max-width:420px;font-size:15px;line-height:1.95;color:rgba(255,255,255,.73)}
+.special__lead strong{color:white;font-weight:800}
+.special__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.special__card{--bg:#f4f4f5;--tx:#0b0b0e;position:relative;min-width:0;min-height:350px;padding:clamp(23px,3.5vw,40px);border-radius:5px;background:var(--bg);color:var(--tx);display:flex;flex-direction:column;justify-content:space-between;gap:65px;transition:transform .45s var(--ease-out),box-shadow .45s}
+.special__card:hover{transform:translateY(-4px);box-shadow:0 28px 54px -25px #0009}
+.special__card--main{grid-column:span 2;min-height:450px;--bg:var(--yellow)}
+.special__card--blue{--bg:#3159d5;--tx:#fff}
+.special__card--pink{--bg:#edbed2}
+.special__card--mist{--bg:#e8eaf2}
+.special__card--white{--bg:#fbfbfc}
+.special__num{font:600 10px/1.4 var(--f-mono);letter-spacing:.16em;opacity:.7}
+.special__mark{position:absolute;right:clamp(22px,3vw,38px);top:clamp(22px,3vw,38px);font:300 86px/.85 var(--f-display);opacity:.45}
+.special__card--main .special__mark{font-size:clamp(100px,17vw,220px);right:7%;top:2%;opacity:.19}
+.special__info{position:relative;z-index:1;display:grid;gap:18px}
+.special__card--main .special__info{grid-template-columns:1fr minmax(220px,.62fr);align-items:end;gap:30px}
+.special__tag{font:600 10px/1.4 var(--f-mono);letter-spacing:.13em;margin-bottom:10px;opacity:.65}
+.special__info h3{font:900 clamp(32px,4.3vw,58px)/1.15 var(--f-cn);letter-spacing:-.04em;text-wrap:balance}
+.special__card--main .special__info h3{font-size:clamp(62px,9vw,120px);font-family:var(--f-display)}
+.special__info h3 span{font:700 .58em/1.2 var(--f-cn);letter-spacing:0}
+.special__sub{font:500 11px/1.6 var(--f-mono);margin-top:14px;opacity:.7;letter-spacing:.04em}
+.special__detail{font-size:15px;line-height:1.88;max-width:40em;opacity:.83;text-wrap:pretty}
+.special__end{display:flex;align-items:center;flex-wrap:wrap;gap:20px 38px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18)}
+.special__end .mono{font-size:10px;color:var(--pink)}
+.special__end p{flex:1 1 300px;font-size:14px;line-height:1.9;color:rgba(255,255,255,.7)}
+.special__end a{flex:none;font-size:13px;font-weight:800;padding:8px 0;border-bottom:1px solid var(--yellow)}
+.special__end a:hover{color:var(--yellow)}
+@media(max-width:900px){.special__top{grid-template-columns:1fr}.special__lead{max-width:650px}.special__card--main .special__info{grid-template-columns:1fr}}
+@media(max-width:650px){.special__grid{grid-template-columns:1fr;gap:10px}.special__card,.special__card--main{grid-column:auto;min-height:320px;gap:42px}.special__card--main{min-height:370px}.special__title{font-size:clamp(40px,10vw,60px)}.special__info h3{font-size:36px}.special__card--main .special__info h3{font-size:70px}.special__detail{font-size:14px}.special__mark{font-size:72px}.special__card--main .special__mark{font-size:116px;right:4%}.special__lead{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.special__card{transition:none}.special__card:hover{transform:none}}
 
 /* ---------------- 02 partners (simple) ---------------- */
 .sec{position:relative;padding-block:clamp(88px,12vw,160px)}
@@ -545,17 +590,17 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
 <div class="progress" aria-hidden="true"><i></i></div>
 
 <header class="top">
-  <a class="pill glass logo" href="#top" data-go="top" aria-label="SIGNWELL 欣緯集團，回到開頭">
+  <a class="pill glass logo" href="#top" data-go="top" aria-label="SIGNWELL SOFTWARE 欣緯軟體，回到開頭">
     <span class="logo__mark" aria-hidden="true">S</span>
-    <span class="logo__txt">SIGNWELL<small>欣緯集團</small></span>
+    <span class="logo__txt">SIGNWELL<small>欣緯軟體 · GROUP</small></span>
   </a>
   <nav class="seg seg--nav glass" aria-label="主要導覽" data-seg>
     <div class="seg__track">
       <a class="seg__item" href="#top" data-go="top"><span>首頁</span></a>
       <a class="seg__item" href="#team" data-go="team"><span>我們</span></a>
+      <a class="seg__item" href="#specialties" data-go="specialties"><span>特色</span></a>
       <a class="seg__item" href="#partners" data-go="partners"><span>夥伴</span></a>
-      <a class="seg__item" href="#modules" data-go="modules"><span>模組</span></a>
-      <a class="seg__item" href="#history" data-go="history"><span>沿革</span></a>
+      <a class="seg__item" href="#history" data-go="history"><span>集團</span></a>
     </div>
   </nav>
   <a class="pill glass pill--mail" href="#contact" data-go="contact" aria-label="聯絡">
@@ -567,9 +612,9 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   <div class="seg__track">
     <a class="seg__item" href="#top" data-go="top"><svg viewBox="0 0 24 24"><use href="#t-home"/></svg><small>首頁</small></a>
     <a class="seg__item" href="#team" data-go="team"><svg viewBox="0 0 24 24"><use href="#t-us"/></svg><small>我們</small></a>
+    <a class="seg__item" href="#specialties" data-go="specialties"><svg viewBox="0 0 24 24"><use href="#t-layers"/></svg><small>特色</small></a>
     <a class="seg__item" href="#partners" data-go="partners"><svg viewBox="0 0 24 24"><use href="#t-hand"/></svg><small>夥伴</small></a>
-    <a class="seg__item" href="#modules" data-go="modules"><svg viewBox="0 0 24 24"><use href="#t-layers"/></svg><small>模組</small></a>
-    <a class="seg__item" href="#history" data-go="history"><svg viewBox="0 0 24 24"><use href="#t-time"/></svg><small>沿革</small></a>
+    <a class="seg__item" href="#history" data-go="history"><svg viewBox="0 0 24 24"><use href="#t-time"/></svg><small>集團</small></a>
   </div>
 </nav>
 
@@ -581,16 +626,16 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <section class="open" aria-labelledby="open-t">
       <span class="regmark a" aria-hidden="true"><i></i></span>
       <span class="regmark b" aria-hidden="true"><i></i></span>
-      <div class="open__meta mono"><span>FIG. 00 — SIGNWELL SOFTWARE</span><span>Design · Development · Digital</span></div>
+      <div class="open__meta mono"><span>FIG. 00 — SIGNWELL SOFTWARE</span><span>AESTHETICS × TECHNOLOGY × BRAND</span></div>
       <div class="open__mid">
         <h1 class="wm" id="open-t"><span class="sr">SIGNWELL SOFTWARE 欣緯軟體</span><span aria-hidden="true" class="wm__w"><span class="wm__l" style="--i:0">S</span><span class="wm__l" style="--i:1">I</span><span class="wm__l" style="--i:2">G</span><span class="wm__l" style="--i:3">N</span><span class="wm__l" style="--i:4">W</span><span class="wm__l" style="--i:5">E</span><span class="wm__l" style="--i:6">L</span><span class="wm__l" style="--i:7">L</span></span><i class="wm__dot" aria-hidden="true"></i></h1>
-        <div class="open__cn"><b>欣緯軟體</b><span class="mono">Web Design · Creative Development</span></div>
+        <div class="open__cn"><b>欣緯軟體</b><span class="mono">Aesthetics · Technology · Brand</span></div>
       </div>
       <div>
         <div class="ruler" aria-hidden="true"></div>
         <div class="open__foot">
           <p class="chain"><span>品牌設計</span><i aria-hidden="true"></i><span>互動開發</span><i aria-hidden="true"></i><span>數位系統</span></p>
-          <p class="open__lead">從想法到上線，把網站做成品牌真正用得上的數位體驗。</p>
+          <p class="open__lead">美學是起點，技術是底氣。以專業集團的整合視野，打造兼具質感與實用性的數位體驗。</p>
           <span class="cue mono" aria-hidden="true"><i></i>Scroll</span>
         </div>
       </div>
@@ -613,17 +658,56 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   </div>
 </div>
 
-<!-- 02 partners -->
+
+<!-- Featured SIGNWELL technologies: accessible and visible without WebGL -->
+<section class="special" id="specialties" aria-labelledby="special-t">
+  <div class="wrap">
+    <header class="special__top">
+      <p class="special__eyebrow mono">FIG. 02 — SIGNWELL SPECIALTIES</p>
+      <h2 class="special__title rv" id="special-t">專業，是一種整合力。<span>美學，是我們的標準。</span></h2>
+      <p class="special__lead rv" style="--d:1"><strong>欣緯不是只做一個「好看的網站」。</strong>我們以專業集團的跨領域思維，將品牌策略、設計判斷與數位技術整合。每一個視覺選擇，都應該有清楚的目的。</p>
+    </header>
+    <div class="special__grid">
+      <article class="special__card special__card--main rv">
+        <span class="special__num">01 / DESIGN × AI</span><span class="special__mark" aria-hidden="true">D×A</span>
+        <div class="special__info"><div><p class="special__tag">DESIGN × AI</p><h3>DISAI <span>技術</span></h3><p class="special__sub">Intelligence needs direction.</p></div>
+        <p class="special__detail">讓 AI 協助資料梳理、概念探索與設計迭代；由人的美學判斷掌握方向，讓效率不犧牲品質。</p></div>
+      </article>
+      <article class="special__card special__card--blue rv">
+        <span class="special__num">02 / IMMERSIVE WEB</span><span class="special__mark" aria-hidden="true">◇</span>
+        <div class="special__info"><div><p class="special__tag">IMMERSIVE WEB</p><h3>WEB3D <span>技術</span></h3><p class="special__sub">A web experience beyond the screen.</p></div>
+        <p class="special__detail">以即時 3D、空間敘事與互動細節打造可探索的網站，讓視覺記憶服務品牌核心。</p></div>
+      </article>
+      <article class="special__card special__card--pink rv">
+        <span class="special__num">03 / CONTENT × INTELLIGENCE</span><span class="special__mark" aria-hidden="true">≋</span>
+        <div class="special__info"><div><p class="special__tag">CONTENT × INTELLIGENCE</p><h3>CMS <span>串連 AI 技術</span></h3><p class="special__sub">An editorial flow that works.</p></div>
+        <p class="special__detail">依內容流程串接 AI 輔助草稿、分類與整理，保留編輯審核，讓後台效率和前台美感同步。</p></div>
+      </article>
+      <article class="special__card special__card--mist rv">
+        <span class="special__num">04 / SOCIAL PRESENCE</span><span class="special__mark" aria-hidden="true">↗</span>
+        <div class="special__info"><div><p class="special__tag">SOCIAL PRESENCE</p><h3>社群 <span>優化技術</span></h3><p class="special__sub">One identity. Every touchpoint.</p></div>
+        <p class="special__detail">統整跨平台內容呈現、社群分享預覽與網站導流動線，維持品牌語氣、視覺和體驗一致。</p></div>
+      </article>
+      <article class="special__card special__card--white rv">
+        <span class="special__num">05 / VISUAL REFINEMENT</span><span class="special__mark" aria-hidden="true">✳</span>
+        <div class="special__info"><div><p class="special__tag">VISUAL REFINEMENT</p><h3>美學 <span>優化</span></h3><p class="special__sub">Refinement is a discipline.</p></div>
+        <p class="special__detail">細修字體、留白、色彩、動效與響應式畫面，讓每個介面細節都有克制且鮮明的設計語言。</p></div>
+      </article>
+    </div>
+    <div class="special__end rv"><span class="mono">AESTHETICS FIRST / ENGINEERING ALWAYS</span><p>技術可以讓網站更精彩；專業美學讓每一項技術知道該出現在哪裡。</p><a href="#contact" data-go="contact">與我們討論合作 ↗</a></div>
+  </div>
+</section>
+<!-- 03 partners -->
 <section class="sec partners" id="partners" aria-labelledby="partners-t">
   <div class="wrap">
     <header class="sec-head">
       <p class="eyebrow"><b>FIG. 02</b>Partners</p>
       <h2 class="h2 rv" id="partners-t">合作夥伴<em>Companies · Brands · Associations</em></h2>
-      <p class="lead rv" style="--d:1">一起合作的企業、品牌與協會。</p>
+      <p class="lead rv" style="--d:1">以專業集團的跨領域視野，串連企業、品牌與組織，將美學、內容與數位體驗整合成一致的品牌形象。</p>
     </header>
     <ol class="plist" data-partners></ol>
     <div class="pfoot">
-      <p class="lead">品牌、設計與網站合作，歡迎透過電子郵件洽談。</p>
+      <p class="lead">從品牌美學、數位敘事到網站開發，歡迎與欣緯討論合作。</p>
       <div class="mailbox"><code>signwell.com.tw@gmail.com</code><button class="copy" type="button" data-copy="signwell.com.tw@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製信箱</button></div>
     </div>
   </div>
@@ -671,7 +755,7 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <header class="sec-head">
       <p class="eyebrow"><b>FIG. 03-B</b>Live modules</p>
       <h2 class="h2 rv" id="play-t">實際玩玩看<em>Try the effects</em></h2>
-      <p class="lead rv" style="--d:1">三個模組直接放在這裡。可以拖、可以按住、可以點。</p>
+      <p class="lead rv" style="--d:1">設計不只是畫面，更是每一次操作的感受。親自體驗三種由視覺與工程共同完成的互動效果。</p>
     </header>
     <div class="bento">
       <article class="tile tile--a rv">
@@ -706,45 +790,10 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   </div>
 </section>
 
-<!-- 04 history (simple) -->
-<section class="sec hist" id="history" aria-labelledby="hist-t">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow"><b>FIG. 04</b>History</p>
-      <h2 class="h2 rv" id="hist-t">企業沿革<em>Continuity of leadership</em></h2>
-      <p class="lead rv" style="--d:1">欣緯軟體從既有品牌與實作經驗出發，整合網站設計、互動開發及數位內容。</p>
-    </header>
-    <div class="hist__grid">
-      <ol class="tl rv">
-        <li><span>Founder</span><div><b>王曉芬</b><p>欣緯科技有限公司創辦人暨董事，支持數位服務發展。</p></div></li>
-        <li><span>Software team</span><div><b>林哲愷・林哲緯</b><p>欣緯軟體部門，負責網站設計、互動前端與專案開發。</p></div></li>
-      </ol>
-      <dl class="facts rv" style="--d:1">
-        <dt>營運單位</dt><dd>欣緯軟體 SIGNWELL SOFTWARE</dd>
-        <dt>所屬公司</dt><dd>欣緯科技有限公司</dd>
-        <dt>公司統編</dt><dd>24389585</dd>
-        <dt>核心服務</dt><dd>網站設計・互動前端・3D 體驗・內容後台</dd>
-        <dt>商務信箱</dt><dd>signwell.com.tw@gmail.com</dd>
-        <dt>公示資料</dt><dd><a href="https://findbiz.nat.gov.tw/fts/company/24389585" target="_blank" rel="noopener">前往經濟部公示資料 ↗</a></dd>
-      </dl>
-    </div>
-    <div class="counts" data-counts>
-      <div class="count"><b data-count="6">6</b><span>項數位服務</span></div>
-      <div class="count"><b data-count="7">7</b><span>個網站作品</span></div>
-      <div class="count"><b data-count="3">3</b><span>位團隊成員</span></div>
-      <div class="count"><b data-count="4">4</b><span>個合作夥伴</span></div>
-    </div>
-    <div class="next rv">
-      <p class="chain"><span>品牌基礎</span><i aria-hidden="true"></i><span>多元作品</span><i aria-hidden="true"></i><span>欣緯軟體</span></p>
-      <p>三個名字，一個一個看。往下捲動。</p>
-    </div>
-  </div>
-</section>
-
-<!-- 05 saga -->
-<div class="pin" id="saga" data-pin="saga">
+<!-- 04 immersive group introduction -->
+<div class="pin" id="history" data-pin="saga">
   <div class="pin__stage saga-stage">
-    <h2 class="sr">欣緯科技、欣緯集團、欣緯軟體</h2>
+    <h2 class="sr">認識欣緯集團 — 欣緯科技、欣緯集團與欣緯軟體的 3D 故事</h2>
     <div class="gl-slot"></div>
     <div class="sg-ui">
       <div class="sg-top mono"><span><b data-sg-n>000</b> — 003</span><span class="sg-names"><button type="button" data-sg-name>欣緯科技</button><button type="button" data-sg-name>欣緯集團</button><button type="button" data-sg-name>欣緯軟體</button></span></div>
@@ -760,6 +809,42 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
   </div>
 </div>
 
+
+<!-- 05 group information -->
+<section class="sec hist" id="group-details" aria-labelledby="hist-t">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow"><b>FIG. 05</b>About the group</p>
+      <h2 class="h2 rv" id="hist-t">認識欣緯集團<em>Our Group · People · Vision</em></h2>
+      <p class="lead rv" style="--d:1">欣緯集團以跨領域的專業累積為基礎。從企業經營、醫學內容到數位設計，我們特別重視視覺美學、細節判斷與長期品質。</p>
+    </header>
+    <div class="hist__grid">
+      <ol class="tl rv">
+        <li><span>Founder</span><div><b>王曉芬</b><p>欣緯科技有限公司創辦人暨董事，支持數位服務發展。</p></div></li>
+        <li><span>Software team</span><div><b>林哲愷・林哲緯</b><p>欣緯軟體部門，負責網站設計、互動前端與專案開發。</p></div></li>
+      </ol>
+      <dl class="facts rv" style="--d:1">
+        <dt>營運單位</dt><dd>欣緯軟體 SIGNWELL SOFTWARE</dd>
+        <dt>所屬公司</dt><dd>欣緯科技有限公司</dd>
+        <dt>公司統編</dt><dd>24389585</dd>
+        <dt>軟體特色</dt><dd>設計美學・DISAI・WEB3D・CMS × AI</dd>
+        <dt>商務信箱</dt><dd>signwell.com.tw@gmail.com</dd>
+        <dt>公示資料</dt><dd><a href="https://findbiz.nat.gov.tw/fts/company/24389585" target="_blank" rel="noopener">前往經濟部公示資料 ↗</a></dd>
+      </dl>
+    </div>
+    <div class="counts" data-counts>
+      <div class="count"><b data-count="6">6</b><span>項數位服務</span></div>
+      <div class="count"><b data-count="7">7</b><span>個網站作品</span></div>
+      <div class="count"><b data-count="3">3</b><span>位團隊成員</span></div>
+      <div class="count"><b data-count="4">4</b><span>個合作夥伴</span></div>
+    </div>
+    <div class="next rv">
+      <p class="chain"><span>品牌基礎</span><i aria-hidden="true"></i><span>多元作品</span><i aria-hidden="true"></i><span>欣緯軟體</span></p>
+      <p>從專業整合到美學實現，是欣緯持續重視的共同標準。</p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="foot" id="contact">
@@ -767,14 +852,14 @@ html[data-ui="dark"] .progress i{background:var(--yellow)}
     <p class="foot__wm" aria-hidden="true">SIGNWELL</p>
     <div class="foot__grid">
       <div>
-        <h3>品牌與專案合作</h3>
+        <h3>集團合作・品牌策略</h3>
         <div class="mailbox"><code>signwell.com.tw@gmail.com</code><button class="copy" type="button" data-copy="signwell.com.tw@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>
-        <p style="margin-top:10px">企業網站、品牌頁面與數位專案合作，都可以來信。</p>
+        <p style="margin-top:10px">從視覺識別、品牌敘事到數位產品，欣緯重視設計品質，也重視落地。歡迎討論合作。</p>
       </div>
       <div>
-        <h3>網站設計・互動開發</h3>
+        <h3>欣緯軟體・美學與工程</h3>
         <div class="mailbox"><code>luca.sinwell@gmail.com</code><button class="copy" type="button" data-copy="luca.sinwell@gmail.com"><svg viewBox="0 0 16 16"><use href="#i-copy"/></svg>複製</button></div>
-        <p style="margin-top:10px">有網站或客製化系統的構想，歡迎來信討論。</p>
+        <p style="margin-top:10px">網站、CMS、互動體驗與客製化系統，我們以美學判斷與技術實作共同回應需求。</p>
       </div>
       <div>
         <h3>公司</h3>
@@ -893,12 +978,12 @@ const PEOPLE = [
   {n:'林哲緯',r:'軟體部門經理',dept:'數位產品與內容',tone:C.pink,cred:['建國中學','中國醫藥大學－醫學系','文森筆記創辦人','欣緯生醫 主編']}
 ];
 const SERVICES = [
-  {t:'品牌與網站規劃',en:'Digital strategy',d:'整理品牌定位、資訊架構與使用者旅程，建立可持續擴充的網站藍圖。',tag:'STRATEGY',ic:'weld',tone:C.yellow},
-  {t:'企業網站設計',en:'Web design',d:'從視覺系統、響應式介面到細節動效，打造符合品牌個性、手機與桌面都好用的網站。',tag:'DESIGN',ic:'res',tone:C.pink},
+  {t:'品牌與網站規劃',en:'Digital strategy',d:'結合品牌定位與美學策略，規劃資訊架構、視覺秩序與使用者旅程。',tag:'STRATEGY',ic:'weld',tone:C.yellow},
+  {t:'企業網站設計',en:'Web design',d:'以專業美學建立視覺系統，細緻調整字體、留白、響應式介面與互動動效。',tag:'DESIGN',ic:'res',tone:C.pink},
   {t:'3D 互動前端',en:'Interactive 3D',d:'以 WebGL、動畫與互動敘事設計沉浸式網站，兼顧效能與內容可讀性。',tag:'INTERACTIVE',ic:'chip',tone:C.blue2},
   {t:'內容管理後台',en:'CMS & workflows',d:'規劃文章編輯、草稿審核、內容發布與管理流程，協助團隊更新網站。',tag:'CMS',ic:'reel',tone:C.paper},
   {t:'客製化數位工具',en:'Custom web apps',d:'依營運流程設計表單、會員功能、學習工具與資料視覺化等系統。',tag:'PRODUCT',ic:'loupe',tone:C.mist},
-  {t:'網站維護與優化',en:'Maintenance & SEO',d:'改善介面、載入效率、搜尋呈現與跨裝置相容性，支援網站後續成長。',tag:'SUPPORT',ic:'code',tone:C.blue,dark:true,mail:'luca.sinwell@gmail.com'}
+  {t:'網站維護與優化',en:'Maintenance & SEO',d:'持續精修視覺一致性、效能、搜尋呈現與跨裝置體驗，讓品質隨品牌成長維持。',tag:'SUPPORT',ic:'code',tone:C.blue,dark:true,mail:'luca.sinwell@gmail.com'}
 ];
 const PARTNERS = [
   {n:'琺騏國際行銷有限公司',en:'Company',tag:'企業',tone:C.yellow},
@@ -961,7 +1046,7 @@ C.line='rgba(11,11,14,.14)';
 const SAGA = [
   {n:'01',cn:'欣緯科技',en:'SIGNWELL Technology',d:'既有企業品牌與經營經驗，是數位服務的基礎。',facts:[['公司統編','24389585'],['核心精神','專業・效率・長期合作']]},
   {n:'02',cn:'欣緯集團',en:'SIGNWELL Group',d:'整合科技、生醫內容與網站服務，串連不同領域的數位需求。',facts:[['品牌方向','科技・生醫・數位服務'],['代表人','王曉芬']]},
-  {n:'03',cn:'欣緯軟體',en:'SIGNWELL Software',d:'專注網站設計、互動開發、數位內容與可持續維護的專屬工具。',facts:[['部門經理','林哲愷・林哲緯'],['網站作品','7 個網站'],['服務項目','6 項數位服務']]}
+  {n:'03',cn:'欣緯軟體',en:'SIGNWELL Software',d:'以美學設計為核心，整合互動技術、AI 內容流程與專屬數位工具，讓網站兼具質感與實用價值。',facts:[['部門經理','林哲愷・林哲緯'],['網站作品','7 個網站'],['特色方向','5 項核心技術']]}
 ];
 const KW = [
   ['BLUR 18PX','SATURATE 185%','RIM HIGHLIGHT'],
@@ -1268,9 +1353,9 @@ const Metro=(()=>{
   route.innerHTML=`<i class="mt-route__fill"></i>`+STOPS.map(s=>`<div class="mt-stop"><i></i><span>${esc(s.n)}</span><small>${s.s}</small></div>`).join('');
   const stopEls=$$('.mt-stop',route),fill=$('.mt-route__fill',route);
   const HEAD=[
-    {k:'FIG. 03 — SIGNWELL LINE',h:'Everyday<br>Effects',cn:'每天都在用的頁面效果',kw:['SAME PAGE','DIFFERENT','EFFECTS'],d:'搭上 SIGNWELL 線。列車進站後，鏡頭沿著車廂穿過五個吊環，每一站介紹一個頁面效果。',use:[]},
+    {k:'FIG. 03 — SIGNWELL LINE',h:'Everyday<br>Effects',cn:'每天都在用的頁面效果',kw:['SAME PAGE','DIFFERENT','EFFECTS'],d:'從視覺節奏到互動回饋，搭上 SIGNWELL 線，看我們如何讓每個設計細節與技術表現互相成就。',use:[]},
     ...EFFECTS.map((m,i)=>({k:`STOP ${pad(i+1)} / 05 — M${pad(i+1)}`,h:m.en.replace(/ (\S+)$/,'<br>$1'),cn:m.n,kw:KW[i],d:m.d,use:m.use})),
-    {k:'NEXT — SW04',h:'Next stop<br>Stack-up',cn:'下車，轉乘疊層站',kw:['FUNCTION','MODULES','AHEAD'],d:'五個頁面效果看完了。下一站是疊層站，介紹五個功能模組。',use:[]}
+    {k:'NEXT — SW04',h:'Next stop<br>Stack-up',cn:'下車，轉乘疊層站',kw:['FUNCTION','MODULES','AHEAD'],d:'美感不止於畫面。下一站探索支持數位體驗的功能模組，從形式走向可用性。',use:[]}
   ];
   let headI=-1;
   function setHead(i){
@@ -1443,10 +1528,10 @@ const Saga=(()=>{
   PINS.push(pin);
   const typeEl=$('[data-sg-type]',pinEl),cnEl=$('[data-sg-cn]',pinEl),bodyEl=$('[data-sg-body]',pinEl),factsEl=$('[data-sg-facts]',pinEl),nEl=$('[data-sg-n]',pinEl),textEl=$('.sg-text',pinEl),names=$$('[data-sg-name]',pinEl),bar=$('.sg-line i',pinEl);
   const CH=[
-    {n:'000',type:'Three chapters. One design vision.',cn:'品牌基礎・多元作品・欣緯軟體',body:'從企業經營基礎到數位作品累積，現在聚焦網站、互動與長期可用的數位工具。',facts:[]},
+    {n:'000',type:'The SIGNWELL perspective.',cn:'認識欣緯集團',body:'從企業經營到醫學內容與數位設計，欣緯以跨領域專業為基礎，讓美學、技術與品牌思維互相支撐。',facts:[]},
     {n:'001',type:'Built on a real business.',cn:'欣緯科技',body:'由王曉芬創辦的欣緯科技，累積企業經營、客戶溝通與專案執行經驗。',facts:[['品牌基礎','欣緯科技有限公司'],['理念','專業・效率・信任']]},
     {n:'002',type:'Ideas become digital products.',cn:'欣緯集團',body:'隨著醫學內容、互動網頁與不同數位專案成形，欣緯延伸出多元的產品服務。',facts:[['品牌方向','科技・生醫・軟體'],['內容平台','欣緯生醫']]},
-    {n:'003',type:'We design. We build. We refine.',cn:'欣緯軟體',body:'從視覺、互動到 CMS 與後續優化，以設計與程式實現可持續營運的網站。',facts:[['團隊','王曉芬・林哲愷・林哲緯'],['服務','網站設計・互動開發・CMS']]}
+    {n:'003',type:'Beauty with a purpose.',cn:'欣緯軟體',body:'美學不是額外包裝，而是產品的思考方式。將設計、WEB3D、AI 內容流程與品牌需求整合成一致的數位體驗。',facts:[['團隊','王曉芬・林哲愷・林哲緯'],['特色','DISAI・WEB3D・CMS × AI・社群・美學']]}
   ];
   let ci=-1;
   function setCh(i){
@@ -1472,7 +1557,7 @@ const Saga=(()=>{
 })();
 
 /* ============ main: layout, chrome, loop ============ */
-const KEYS=['top','team','partners','modules','history'];
+const KEYS=['top','team','specialties','partners','history'];
 const navCap=new Capsule($('.seg--nav'),{onPick:k=>go(KEYS[k])});
 const dockCap=new Capsule($('[data-dock]'),{onPick:k=>go(KEYS[k])});
 const zones=[],TY={};
@@ -1496,9 +1581,9 @@ function layout(){
   KEYS.concat('contact').forEach(k=>TY[k]=targetY(k));
   zones.length=0;
   const z=(el,tone)=>{const r=el.getBoundingClientRect();zones.push({a:r.top+scrollY,b:r.bottom+scrollY,tone})};
-  z($('[data-pin="spin"]'),()=>Spin.tone());z($('#partners'),()=>'light');
+  z($('[data-pin="spin"]'),()=>Spin.tone());z($('#specialties'),()=>'dark');z($('#partners'),()=>'light');
   if(Metro)z($('[data-pin="metro"]'),()=>Metro.tone());
-  z($('[data-pin="stack"]'),()=>'dark');z($('#play'),()=>'light');z($('#history'),()=>'light');z($('[data-pin="saga"]'),()=>'light');z($('#contact'),()=>'dark');
+  z($('[data-pin="stack"]'),()=>'dark');z($('#play'),()=>'light');z($('[data-pin="saga"]'),()=>'light');z($('#group-details'),()=>'light');z($('#contact'),()=>'dark');
   scrollMax=Math.max(0,document.documentElement.scrollHeight-innerHeight);
 }
 let lw=innerWidth,lh=innerHeight,rT;
