@@ -1,0 +1,465 @@
+{
+  "testDate": "2026-10-14",
+  "browser": "154.0.8037.57",
+  "hardwareGPU": false,
+  "environment": "Headless Chromium / SwiftShader software GPU; mobile profiles emulate viewport, DPR and CPU-core metadata, not physical devices.",
+  "targetFPS": 110,
+  "targetFPSVerifiedOnHardware": false,
+  "validation": {
+    "stageCaptures": 12,
+    "runtimeErrors": 0,
+    "failedRequests": 0,
+    "contextLossDuringStageSamples": false,
+    "horizontalOverflow": false,
+    "mouseLens": "passed",
+    "iphoneTouchLens": "passed",
+    "androidTouchLens": "passed",
+    "androidContextRecovery": "passed",
+    "androidFreezeResume": "passed",
+    "iphonePerfOverlay": "passed",
+    "iphoneSpinTouchDrag": "passed",
+    "keyboardCardDialogAndFocusReturn": "passed",
+    "onDemandDetailImage": "2560x1600 verified",
+    "hardware110FPS": "Not verified; software GPU only. Physical display/browser/GPU limits apply."
+  },
+  "finalMaterialRecheck": {
+    "profile": "android",
+    "viewport": {
+      "width": 360,
+      "height": 800
+    },
+    "dpr": 2,
+    "cores": 4,
+    "scope": "Final MeshBasic printed faces / Lambert Saga ground: visual, dimensions, shader/runtime errors, touch picking. Earlier full timing data is retained separately; no new timed FPS samples.",
+    "errors": [],
+    "failedRequests": [],
+    "scenes": [
+      {
+        "pin": "spin",
+        "segment": "c0",
+        "progress": 0.28,
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 3200
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "contextLost": false,
+        "horizontalOverflow": false,
+        "stage": "spin",
+        "drawCalls": 28,
+        "triangles": 2692,
+        "screenshot": "/workspace/scratch/signwell-verification/optimized/final-android-spin.png"
+      },
+      {
+        "pin": "metro",
+        "segment": "m1",
+        "progress": 0.35,
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 3200
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "contextLost": false,
+        "horizontalOverflow": false,
+        "stage": "metro",
+        "drawCalls": 70,
+        "triangles": 46376,
+        "screenshot": "/workspace/scratch/signwell-verification/optimized/final-android-metro.png"
+      },
+      {
+        "pin": "stack",
+        "segment": "f1",
+        "progress": 0.35,
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 3200
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "contextLost": false,
+        "horizontalOverflow": false,
+        "stage": "stack",
+        "drawCalls": 12,
+        "triangles": 1352,
+        "screenshot": "/workspace/scratch/signwell-verification/optimized/final-android-stack.png"
+      },
+      {
+        "pin": "saga",
+        "segment": "c2",
+        "progress": 0.45,
+        "drawingBuffer": {
+          "width": 1440,
+          "height": 3200
+        },
+        "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+        "contextLost": false,
+        "horizontalOverflow": false,
+        "stage": "saga",
+        "drawCalls": 60,
+        "triangles": 5348,
+        "screenshot": "/workspace/scratch/signwell-verification/optimized/final-android-saga.png"
+      }
+    ],
+    "printedCardTouchPicking": {
+      "passed": true,
+      "dialogTitle": "欣緯生醫 CMS 後台"
+    },
+    "passed": true,
+    "contactSheet": "/workspace/scratch/signwell-verification/optimized/final-android-contact-sheet.jpg"
+  },
+  "timingNote": "Software FPS samples precede final mobile print/ground material simplification. Final materials receive a separate visual/runtime/resolution check; no hardware FPS claim.",
+  "rows": [
+    {
+      "mode": "baseline",
+      "profile": "desktop-1080p",
+      "stage": "spin",
+      "bufferWidth": 1920,
+      "bufferHeight": 1080,
+      "drawCallsPerFrame": 117.0,
+      "instrumentedTotalDrawCallsPerFrame": 117.0,
+      "trianglesPerFrame": 22345.0,
+      "softwareObservedFPS": 0.68,
+      "softwareP95FrameMs": 3783.2
+    },
+    {
+      "mode": "baseline",
+      "profile": "desktop-1080p",
+      "stage": "metro",
+      "bufferWidth": 1920,
+      "bufferHeight": 1080,
+      "drawCallsPerFrame": 137.0,
+      "instrumentedTotalDrawCallsPerFrame": 137.0,
+      "trianglesPerFrame": 168889.0,
+      "softwareObservedFPS": 1.16,
+      "softwareP95FrameMs": 4116.5
+    },
+    {
+      "mode": "baseline",
+      "profile": "desktop-1080p",
+      "stage": "stack",
+      "bufferWidth": 1920,
+      "bufferHeight": 1080,
+      "drawCallsPerFrame": 18.0,
+      "instrumentedTotalDrawCallsPerFrame": 18.0,
+      "trianglesPerFrame": 5413.0,
+      "softwareObservedFPS": 0.93,
+      "softwareP95FrameMs": 5183.1
+    },
+    {
+      "mode": "baseline",
+      "profile": "desktop-1080p",
+      "stage": "saga",
+      "bufferWidth": 1920,
+      "bufferHeight": 1080,
+      "drawCallsPerFrame": 91.0,
+      "instrumentedTotalDrawCallsPerFrame": 91.0,
+      "trianglesPerFrame": 20733.0,
+      "softwareObservedFPS": 1.61,
+      "softwareP95FrameMs": 2349.9
+    },
+    {
+      "mode": "baseline",
+      "profile": "iphone",
+      "stage": "spin",
+      "bufferWidth": 585,
+      "bufferHeight": 1266,
+      "drawCallsPerFrame": 57.0,
+      "instrumentedTotalDrawCallsPerFrame": 57.0,
+      "trianglesPerFrame": 8969.0,
+      "softwareObservedFPS": 1.08,
+      "softwareP95FrameMs": 1700.0
+    },
+    {
+      "mode": "baseline",
+      "profile": "iphone",
+      "stage": "metro",
+      "bufferWidth": 585,
+      "bufferHeight": 1266,
+      "drawCallsPerFrame": 141.0,
+      "instrumentedTotalDrawCallsPerFrame": 141.0,
+      "trianglesPerFrame": 148745.0,
+      "softwareObservedFPS": 2.24,
+      "softwareP95FrameMs": 899.9
+    },
+    {
+      "mode": "baseline",
+      "profile": "iphone",
+      "stage": "stack",
+      "bufferWidth": 585,
+      "bufferHeight": 1266,
+      "drawCallsPerFrame": 18.0,
+      "instrumentedTotalDrawCallsPerFrame": 18.0,
+      "trianglesPerFrame": 4453.0,
+      "softwareObservedFPS": 3.23,
+      "softwareP95FrameMs": 800
+    },
+    {
+      "mode": "baseline",
+      "profile": "iphone",
+      "stage": "saga",
+      "bufferWidth": 527,
+      "bufferHeight": 1139,
+      "drawCallsPerFrame": 91.0,
+      "instrumentedTotalDrawCallsPerFrame": 91.0,
+      "trianglesPerFrame": 17085.0,
+      "softwareObservedFPS": 4.17,
+      "softwareP95FrameMs": 500
+    },
+    {
+      "mode": "baseline",
+      "profile": "android",
+      "stage": "spin",
+      "bufferWidth": 396,
+      "bufferHeight": 880,
+      "drawCallsPerFrame": 57.0,
+      "instrumentedTotalDrawCallsPerFrame": 57.0,
+      "trianglesPerFrame": 7433.0,
+      "softwareObservedFPS": 2.46,
+      "softwareP95FrameMs": 666.6
+    },
+    {
+      "mode": "baseline",
+      "profile": "android",
+      "stage": "metro",
+      "bufferWidth": 396,
+      "bufferHeight": 880,
+      "drawCallsPerFrame": 141.0,
+      "instrumentedTotalDrawCallsPerFrame": 141.0,
+      "trianglesPerFrame": 130857.0,
+      "softwareObservedFPS": 4.41,
+      "softwareP95FrameMs": 416.7
+    },
+    {
+      "mode": "baseline",
+      "profile": "android",
+      "stage": "stack",
+      "bufferWidth": 396,
+      "bufferHeight": 880,
+      "drawCallsPerFrame": 18.0,
+      "instrumentedTotalDrawCallsPerFrame": 18.0,
+      "trianglesPerFrame": 3493.0,
+      "softwareObservedFPS": 4.8,
+      "softwareP95FrameMs": 533.4
+    },
+    {
+      "mode": "baseline",
+      "profile": "android",
+      "stage": "saga",
+      "bufferWidth": 342,
+      "bufferHeight": 760,
+      "drawCallsPerFrame": 94.0,
+      "instrumentedTotalDrawCallsPerFrame": 94.0,
+      "trianglesPerFrame": 14127.0,
+      "softwareObservedFPS": 4.17,
+      "softwareP95FrameMs": 466.7
+    },
+    {
+      "mode": "optimized",
+      "profile": "desktop-1080p",
+      "stage": "spin",
+      "bufferWidth": 2560,
+      "bufferHeight": 1440,
+      "drawCallsPerFrame": 58,
+      "instrumentedTotalDrawCallsPerFrame": 58,
+      "trianglesPerFrame": 11172,
+      "softwareObservedFPS": 0.59,
+      "softwareP95FrameMs": 5916.5
+    },
+    {
+      "mode": "optimized",
+      "profile": "desktop-1080p",
+      "stage": "metro",
+      "bufferWidth": 2560,
+      "bufferHeight": 1440,
+      "drawCallsPerFrame": 68,
+      "instrumentedTotalDrawCallsPerFrame": 68,
+      "trianglesPerFrame": 84444,
+      "softwareObservedFPS": 0.72,
+      "softwareP95FrameMs": 5149.7
+    },
+    {
+      "mode": "optimized",
+      "profile": "desktop-1080p",
+      "stage": "stack",
+      "bufferWidth": 2560,
+      "bufferHeight": 1440,
+      "drawCallsPerFrame": 17,
+      "instrumentedTotalDrawCallsPerFrame": 16.17,
+      "trianglesPerFrame": 5412,
+      "softwareObservedFPS": 0.53,
+      "softwareP95FrameMs": 4616.5
+    },
+    {
+      "mode": "optimized",
+      "profile": "desktop-1080p",
+      "stage": "saga",
+      "bufferWidth": 2560,
+      "bufferHeight": 1440,
+      "drawCallsPerFrame": 90,
+      "instrumentedTotalDrawCallsPerFrame": 90,
+      "trianglesPerFrame": 20732,
+      "softwareObservedFPS": 0.98,
+      "softwareP95FrameMs": 1650
+    },
+    {
+      "mode": "optimized",
+      "profile": "iphone",
+      "stage": "spin",
+      "bufferWidth": 1440,
+      "bufferHeight": 3116,
+      "drawCallsPerFrame": 28,
+      "instrumentedTotalDrawCallsPerFrame": 28,
+      "trianglesPerFrame": 3076,
+      "softwareObservedFPS": 0.48,
+      "softwareP95FrameMs": 4199.7
+    },
+    {
+      "mode": "optimized",
+      "profile": "iphone",
+      "stage": "metro",
+      "bufferWidth": 1440,
+      "bufferHeight": 3116,
+      "drawCallsPerFrame": 70,
+      "instrumentedTotalDrawCallsPerFrame": 70,
+      "trianglesPerFrame": 53276,
+      "softwareObservedFPS": 1.1,
+      "softwareP95FrameMs": 3233.2
+    },
+    {
+      "mode": "optimized",
+      "profile": "iphone",
+      "stage": "stack",
+      "bufferWidth": 1440,
+      "bufferHeight": 3116,
+      "drawCallsPerFrame": 12,
+      "instrumentedTotalDrawCallsPerFrame": 12,
+      "trianglesPerFrame": 1592,
+      "softwareObservedFPS": 0.76,
+      "softwareP95FrameMs": 4483.2
+    },
+    {
+      "mode": "optimized",
+      "profile": "iphone",
+      "stage": "saga",
+      "bufferWidth": 1440,
+      "bufferHeight": 3116,
+      "drawCallsPerFrame": 58,
+      "instrumentedTotalDrawCallsPerFrame": 58,
+      "trianglesPerFrame": 5998,
+      "softwareObservedFPS": 1.18,
+      "softwareP95FrameMs": 1466.5
+    },
+    {
+      "mode": "optimized",
+      "profile": "android",
+      "stage": "spin",
+      "bufferWidth": 1440,
+      "bufferHeight": 3200,
+      "drawCallsPerFrame": 28,
+      "instrumentedTotalDrawCallsPerFrame": 36.17,
+      "trianglesPerFrame": 2692,
+      "softwareObservedFPS": 0.55,
+      "softwareP95FrameMs": 4983.1
+    },
+    {
+      "mode": "optimized",
+      "profile": "android",
+      "stage": "metro",
+      "bufferWidth": 1440,
+      "bufferHeight": 3200,
+      "drawCallsPerFrame": 70,
+      "instrumentedTotalDrawCallsPerFrame": 70,
+      "trianglesPerFrame": 46376,
+      "softwareObservedFPS": 1.06,
+      "softwareP95FrameMs": 4599.8
+    },
+    {
+      "mode": "optimized",
+      "profile": "android",
+      "stage": "stack",
+      "bufferWidth": 1440,
+      "bufferHeight": 3200,
+      "drawCallsPerFrame": 12,
+      "instrumentedTotalDrawCallsPerFrame": 12,
+      "trianglesPerFrame": 1352,
+      "softwareObservedFPS": 0.84,
+      "softwareP95FrameMs": 4049.9
+    },
+    {
+      "mode": "optimized",
+      "profile": "android",
+      "stage": "saga",
+      "bufferWidth": 1440,
+      "bufferHeight": 3200,
+      "drawCallsPerFrame": 60,
+      "instrumentedTotalDrawCallsPerFrame": 60,
+      "trianglesPerFrame": 5348,
+      "softwareObservedFPS": 1.03,
+      "softwareP95FrameMs": 1649.9
+    }
+  ],
+  "checks": [
+    {
+      "profile": "desktop-1080p",
+      "behavior": {
+        "contextRecovery": {
+          "passed": true
+        },
+        "freezeResume": {
+          "passed": true,
+          "note": "CDP lifecycle freeze/resume; not a real mobile OS background test"
+        },
+        "lensDrag": {
+          "passed": true,
+          "pointerType": "mouse",
+          "before": "translate(187.74px, 50.4px)",
+          "after": {
+            "transform": "translate(238.13px, 107px)",
+            "pressed": false
+          }
+        }
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "profile": "iphone",
+      "behavior": {
+        "lensDrag": {
+          "passed": true,
+          "pointerType": "touch",
+          "before": "translate(133.56px, 50.4px)",
+          "after": {
+            "transform": "translate(147.6px, 107px)",
+            "pressed": false
+          }
+        }
+      },
+      "errors": [],
+      "failedRequests": []
+    },
+    {
+      "profile": "android",
+      "behavior": {
+        "contextRecovery": {
+          "passed": true
+        },
+        "freezeResume": {
+          "passed": true,
+          "note": "CDP lifecycle freeze/resume; not a real mobile OS background test"
+        },
+        "lensDrag": {
+          "passed": true,
+          "pointerType": "touch",
+          "before": "translate(120.96px, 50.4px)",
+          "after": {
+            "transform": "translate(126.6px, 107px)",
+            "pressed": false
+          }
+        }
+      },
+      "errors": [],
+      "failedRequests": []
+    }
+  ],
+  "sourceSHA256": "e465703df3a26f7f45a6ab8d1d9307375bf1c03935e121dae51598a628134704"
+}
