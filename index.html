@@ -1977,7 +1977,13 @@ precision highp float;in vec2 vUv;uniform sampler2D uS;out vec4 o;void main(){o=
   }
   ['pointerdown', 'pointermove', 'pointerenter'].forEach(t => canvas.addEventListener(t, () => loop(), { passive: true }));
   document.addEventListener('visibilitychange', () => { if (!document.hidden && visible) loop(); });
-  new ResizeObserver(() => { if (ready && canvas.isConnected) resize(); }).observe(canvas);
+  // A resize may wake a previously idle drawer: render the new buffer at once
+  // rather than exposing its cleared surface until the next timed animation.
+  new ResizeObserver(() => {
+    if (!ready || !canvas.isConnected) return;
+    resize();
+    if (visible && !document.hidden) loop();
+  }).observe(canvas);
 
   function init() {
     if (ready || failed) return ready;
