@@ -2281,8 +2281,9 @@ const CORES=navigator.hardwareConcurrency||4;
 const TIER=MOB?((CORES>=6&&(devicePixelRatio||1)>=2)?1:0):2;
 /* Keep the short edge at QHD resolution, including portrait phone stages.
    Reduce geometry/effects on phones instead of shrinking the drawing buffer. */
-const Q={shadow:MOB?512:2048,tex:MOB?.75:1,seg:[.3,.45,1][TIER]};
-const TARGET_FPS=MOB?60:110,SHORT_EDGE=MOB?850:1440;
+const Q={shadow:MOB?512:1024,tex:MOB?.75:1,seg:[.3,.45,1][TIER]};
+const TARGET_FPS=60,SHORT_EDGE=MOB?850:1440;
+const GPU_PIXEL_BUDGET=MOB?1600000:3200000; // bound fill rate and renderbuffer memory
 const QUALITY={scale:1,slow:0,fast:0};
 let dpr=1;
 const PERF=window.SIGNWELL_PERF={targetFPS:TARGET_FPS,frameBudgetMs:1000/TARGET_FPS,profile:MOB?'mobile-adaptive':'desktop',width:0,height:0,fps:0,frameMs:0,cpuMs:0,drawCalls:0,triangles:0,qualityScale:1,stage:null};
@@ -2313,7 +2314,7 @@ function rrPlane(w,h,r,seg=6){const g=new T.ShapeGeometry(rrShape(w,h,r),seg);co
 function rrSlab(w,h,d,r,bev,seg=3,curve){const b=Math.min(bev,d/2-.0005);const g=new T.ExtrudeGeometry(rrShape(w-2*b,h-2*b,Math.max(.001,r-b)),{depth:Math.max(.0005,d-2*b),bevelEnabled:true,bevelThickness:b,bevelSize:b,bevelSegments:seg,curveSegments:curve||Math.max(3,Math.round(10*Q.seg))});g.center();g.computeVertexNormals();return g}
 /* Printed faces carry their own colors. Phones can display them without
    per-pixel environment reflections; bevelled bodies retain their lighting. */
-function printMaterial(options){return MOB?new T.MeshBasicMaterial({color:options.color??0xffffff,map:options.map??null}):new T.MeshStandardMaterial(options)}
+function printMaterial(options){const stable={polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2};return MOB?new T.MeshBasicMaterial({...stable,color:options.color??0xffffff,map:options.map??null}):new T.MeshStandardMaterial({...stable,...options})}
 function canvasTex(w,h,draw,opt={}){const c=document.createElement('canvas');c.width=Math.round(w);c.height=Math.round(h);const g=c.getContext('2d');draw(g,c.width,c.height);const t=new T.CanvasTexture(c);t.colorSpace=T.SRGBColorSpace;t.anisotropy=ANI;if(opt.repeat){t.wrapS=T.RepeatWrapping}t.needsUpdate=true;return t}
 function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
 const FCN='"Noto Sans TC","Noto Sans CJK TC","PingFang TC","Microsoft JhengHei",sans-serif',FMO='"IBM Plex Mono",ui-monospace,Menlo,monospace',FDI='Archivo,"Noto Sans TC","Noto Sans CJK TC",sans-serif';
@@ -2355,24 +2356,25 @@ function warmScene(scene,cam){
   }});
   R.compileAsync(scene,cam).catch(()=>{});
 }
-const SCN=[];let cur=null,W=4,H=4,lost=false,lastShadow=-Infinity;
+const SCN=[];let cur=null,W=4,H=4,lost=false,qualityResizePending=false;
 let frameTotal=0,frameCount=0;
 function stageTop(pin){const y=scrollY;if(y<pin.top)return pin.top-y;if(y>pin.top+pin.len)return pin.top+pin.len-y;return 0}
 function vis(s){const t=stageTop(s.pin);return 1-Math.min(1,Math.abs(t)/V.h)}
 function size(){
   if(!cur)return;const sw=cur.slot.clientWidth,sh=cur.slot.clientHeight;if(!sw||!sh)return;
   const limit=Math.min(R.capabilities.maxTextureSize,R.getContext().getParameter(R.getContext().MAX_RENDERBUFFER_SIZE));
-  dpr=MOB?Math.min(1.5*QUALITY.scale,SHORT_EDGE*QUALITY.scale/Math.min(sw,sh),limit/Math.max(sw,sh)):Math.min(Math.max(1,SHORT_EDGE/Math.min(sw,sh)),limit/Math.max(sw,sh));
+  const targetDpr=MOB?Math.min(1.5*QUALITY.scale,SHORT_EDGE*QUALITY.scale/Math.min(sw,sh)):Math.max(1,SHORT_EDGE/Math.min(sw,sh));
+  dpr=Math.max(.5,Math.min(targetDpr,Math.sqrt(GPU_PIXEL_BUDGET/(sw*sh)),limit/Math.max(sw,sh)));
   const nw=Math.round(sw*dpr),nh=Math.round(sh*dpr);
   if(nw!==W||nh!==H){W=nw;H=nh;R.setSize(W,H,false)}
   PERF.width=W;PERF.height=H;cur.resize(sw,sh);
-  lastShadow=-Infinity;
 }
 canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;window.SIGNWELL_FALLBACK(new Error('WebGL context lost'))});
-canvas.addEventListener('webglcontextrestored',()=>{lost=false;size();lastShadow=-Infinity});
+canvas.addEventListener('webglcontextrestored',()=>{lost=false;size();R.shadowMap.needsUpdate=true});
 function render(scene,cam,p){
-  const t=performance.now()/1000;
-  if(!MOB){R.shadowMap.needsUpdate=t-lastShadow>=1/30;if(R.shadowMap.needsUpdate)lastShadow=t}
+  // Animated shadows must update in phase with their moving casters.
+  // Mobile disables shadow maps; desktop uses a smaller, steadier map.
+  if(!MOB)R.shadowMap.needsUpdate=true;
   R.setRenderTarget(null);R.setClearColor(p.clear??0x000000,1);R.render(scene,cam);
 }
 function prepare(s){
@@ -2395,6 +2397,8 @@ function frame(dt,t,frameMs=dt*1000){
   if(best!==cur){if(best){prepare(best);best.slot.appendChild(canvas)}cur=best;if(cur)size();}
   prewarm();
   if(!cur){PERF.stage=null;if(perfOutput)perfOutput.textContent='等待 3D 場景…';return}
+  // setSize clears the drawing buffer: resize before drawing this frame, not after.
+  if(qualityResizePending){qualityResizePending=false;size()}
   const started=performance.now();R.info.reset();cur.frame(dt,t);
   PERF.stage=cur.pin.el.dataset.pin;PERF.frameMs=frameMs;
   PERF.cpuMs=PERF.cpuMs*.9+(performance.now()-started)*.1;
@@ -2409,10 +2413,10 @@ function frame(dt,t,frameMs=dt*1000){
        QUALITY.fast=PERF.fps>57?QUALITY.fast+1:0;
        if(QUALITY.slow>=2&&QUALITY.scale>.65){
          QUALITY.scale=Math.max(.65,Math.round((QUALITY.scale-.1)*100)/100);
-         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;size();
+         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;qualityResizePending=true;
        }else if(QUALITY.fast>=5&&QUALITY.scale<1){
          QUALITY.scale=Math.min(1,Math.round((QUALITY.scale+.05)*100)/100);
-         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;size();
+         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;qualityResizePending=true;
        }
      }
      frameTotal=0;frameCount=0;
@@ -2531,8 +2535,8 @@ const S={pin:Spin.pin,slot,want:()=>SPIN.on,ready:false,
       const g=new T.Group();g.rotation.order='YXZ';
       const sl=new T.Mesh(slab,edge);g.add(sl);
       const fm=GLX.printMaterial({color:'#ffffff',roughness:.48,envMapIntensity:.75});
-      const f=new T.Mesh(face,fm);f.position.z=.0095;f.userData.j=j;g.add(f);
-      const b=new T.Mesh(face,backs[o.ci]);b.rotation.y=Math.PI;b.position.z=-.0095;g.add(b);
+      const f=new T.Mesh(face,fm);f.position.z=.012;f.userData.j=j;g.add(f);
+      const b=new T.Mesh(face,backs[o.ci]);b.rotation.y=Math.PI;b.position.z=-.012;g.add(b);
       cyl.add(g);return{g,f,fm,o,h:0,j};
     });
     /* textures, once fonts and pictures are in */
@@ -2796,7 +2800,7 @@ const S={pin:Stack.pin,slot,want:()=>STACK.on,ready:false,
     plates=FUNCS.map((m,i)=>{
       const g=new T.Group();
       const body=new T.Mesh(slab,new T.MeshStandardMaterial({color:m.tone,roughness:.45,envMapIntensity:.6}));body.castShadow=body.receiveShadow=true;g.add(body);
-      const fm=GLX.printMaterial({color:'#ffffff',roughness:.5,envMapIntensity:.5});const f=new T.Mesh(face,fm);f.position.y=PT/2+.0008;f.receiveShadow=true;g.add(f);
+      const fm=GLX.printMaterial({color:'#ffffff',roughness:.5,envMapIntensity:.5});const f=new T.Mesh(face,fm);f.position.y=PT/2+.004;f.receiveShadow=true;g.add(f);
       grp.add(g);
       GLX.fontsReady.then(async()=>{const fig=await GLX.svgImage(m.fig(),972,546);await GLX.textureTask(()=>{fm.map=plateTex(m,i,fig);R.initTexture(fm.map);fm.needsUpdate=true});S.warm()});
       return{g,base:(i-(FUNCS.length-1)/2)*GAP};
@@ -2955,7 +2959,7 @@ float n=sin(p.x*2.4+uT*1.1)*.42+sin(p.y*3.3-uT*.9+p.x*.8)*.33+sin((p.x*1.7-p.y*2
     CARDS=[...PARTS.map((d,i)=>({g:0,i,d,bg:i%2?'#0b0b0e':'#ffd84d',fg:i%2?'#ffffff':'#0b0b0e',k:'PART'})),...BIO.map((d,i)=>({g:1,i,d,bg:i%2?'#e98fb2':'#f7c6d9',fg:'#0b0b0e',k:'BIO'})),...SW.map((d,i)=>({g:2,i,d,bg:i%2?'#2c55e0':'#3d6bff',fg:'#ffffff',k:'WEB'}))];
     const body=GLX.rrSlab(.62,.38,.03,.03,.01,2);body.rotateX(-Math.PI/2);const top=GLX.rrPlane(.6,.36,.026,6);top.rotateX(-Math.PI/2);
     CARDS.forEach(c=>{const grp=new T.Group();const b=new T.Mesh(body,new T.MeshStandardMaterial({color:c.bg,roughness:.42,envMapIntensity:.35}));b.castShadow=b.receiveShadow=true;grp.add(b);
-      const tm=GLX.printMaterial({color:'#ffffff',roughness:.45,envMapIntensity:.35});const tp=new T.Mesh(top,tm);tp.position.y=.0156;tp.receiveShadow=true;grp.add(tp);grp.visible=false;scene.add(grp);c.grp=grp;c.tm=tm});
+      const tm=GLX.printMaterial({color:'#ffffff',roughness:.45,envMapIntensity:.35});const tp=new T.Mesh(top,tm);tp.position.y=.019;tp.receiveShadow=true;grp.add(tp);grp.visible=false;scene.add(grp);c.grp=grp;c.tm=tm});
     GLX.fontsReady.then(async()=>{
       dash.material.map=dashTex();dash.material.needsUpdate=true;
       for(const c of CARDS){const im=c.g===2&&SHOTS[c.i]?await GLX.loadImg(`assets/w/${SHOTS[c.i]}.webp`):null;await GLX.textureTask(()=>{c.tm.map&&c.tm.map.dispose();c.tm.map=cardTex(c,im);R.initTexture(c.tm.map);c.tm.needsUpdate=true})}
