@@ -1778,7 +1778,7 @@ precision highp float;in vec2 vUv;uniform sampler2D uS;out vec4 o;void main(){o=
   function freeTargets() { if (!T) return;[T.scene, T.half, T.a, T.b].forEach(t => { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fb); }); gl.deleteRenderbuffer(T.crb); gl.deleteRenderbuffer(T.drb); gl.deleteFramebuffer(T.ms); }
   function makeTargets() {
     freeTargets();
-    const samples = Math.min(4, gl.getParameter(gl.MAX_SAMPLES) || 0);
+    const samples = Math.min(V.mob ? 2 : 4, gl.getParameter(gl.MAX_SAMPLES) || 0);
     const ms = gl.createFramebuffer(), crb = gl.createRenderbuffer(), drb = gl.createRenderbuffer();
     gl.bindRenderbuffer(gl.RENDERBUFFER, crb); gl.renderbufferStorageMultisample(gl.RENDERBUFFER, samples, gl.RGBA8, W, H);
     gl.bindRenderbuffer(gl.RENDERBUFFER, drb); gl.renderbufferStorageMultisample(gl.RENDERBUFFER, samples, gl.DEPTH_COMPONENT24, W, H);
@@ -1807,8 +1807,16 @@ precision highp float;in vec2 vUv;uniform sampler2D uS;out vec4 o;void main(){o=
     const pixelBudget = typeof PERF_PROFILE !== 'undefined' ? PERF_PROFILE.drawerPixels : 2600000;
     dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     if (cssW * cssH * dpr * dpr > pixelBudget) dpr = Math.sqrt(pixelBudget / (cssW * cssH));
-    W = Math.max(1, Math.round(cssW * dpr)); H = Math.max(1, Math.round(cssH * dpr));
-    canvas.width = W; canvas.height = H; makeTargets(); layoutCamera();
+    const nextW = Math.max(1, Math.round(cssW * dpr));
+    const nextH = Math.max(1, Math.round(cssH * dpr));
+    // ResizeObserver can fire repeatedly with unchanged dimensions. Reallocating
+    // a multisample framebuffer every time clears the visible canvas and flashes.
+    if (W !== nextW || H !== nextH || !T) {
+      W = nextW; H = nextH;
+      canvas.width = W; canvas.height = H;
+      makeTargets();
+    }
+    layoutCamera();
   }
 
   function project(x, y, z) { const c = t4(VP, x, y, z, 1); return [(c[0] / c[3] + 1) / 2 * cssW, (1 - c[1] / c[3]) / 2 * cssH]; }
