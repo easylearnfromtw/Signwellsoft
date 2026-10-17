@@ -2252,6 +2252,7 @@ const {T,Q}=GLX;
 const slot=$('[data-pin="stack"] .gl-slot');
 const PW=1.6,PD=1.0,PT=.036,GAP=.12;
 let scene,cam,grp,plates=[],qFace=new T.Quaternion().setFromEuler(new T.Euler(Math.PI/2,0,0)),tq=new T.Quaternion(),gq=new T.Quaternion(),tv=new T.Vector3(),camDist=5,contact;
+let stackCameraPull=0,lastStackYaw=null;
 function plateTex(m,i,fig){
   return GLX.canvasTex(1024,640,(g,W,H)=>{
     g.fillStyle='#ffffff';g.fillRect(0,0,W,H);
@@ -2290,17 +2291,49 @@ const S={pin:Stack.pin,slot,want:()=>STACK.on,ready:false,
     if(V.mob)cam.setViewOffset(w,h,0,h*.1,w,h);else if(V.w>1100)cam.setViewOffset(w,h,-w*.08,0,w,h);else cam.clearViewOffset();cam.updateProjectionMatrix()},
   frame(dt,t){
     const st=STACK,e=(90-st.tl)*Math.PI/180;
-    cam.position.set(0,Math.sin(e)*camDist,Math.cos(e)*camDist);cam.lookAt(0,0,0);cam.updateMatrixWorld();
-    grp.rotation.y=-st.th*Math.PI/180;grp.scale.setScalar(1-st.out*.35);grp.updateMatrixWorld();
+    // Pull the camera back while rotating between modules, including the 360° transfer.
+    // Using an angle modulo 72° (rather than abs(st.th)) avoids permanent zoom-out
+    // after the animated full turn.
+    const phase=((st.th+38)%72+72)%72;
+    const between=Math.pow(Math.sin(Math.PI*phase/72),2);
+    const speed=lastStackYaw===null?0:Math.abs(st.th-lastStackYaw)/Math.max(.016,dt);
+    lastStackYaw=st.th;
+    const spin=st.wU>0&&st.wU<1?Math.pow(Math.sin(Math.PI*st.wU),2):0;
+    const targetPull=Math.max(between,spin,clamp((speed-15)/170));
+    stackCameraPull=lerp(stackCameraPull,targetPull,1-Math.exp(-dt*(targetPull>stackCameraPull?8:4)));
+    const dist=camDist*(1+(V.mob?.32:.19)*stackCameraPull);
+    cam.position.set(0,Math.sin(e)*dist,Math.cos(e)*dist);
+    cam.lookAt(0,0,0);cam.updateMatrixWorld();
+
+    // Recede the other plates when a module faces the viewer, while preserving
+    // the face card's intended world-space placement.
+    grp.rotation.y=-st.th*Math.PI/180;
+    grp.scale.setScalar((1-st.out*.35)*(1-st.k*(V.mob?.13:.09)));
+    grp.updateMatrixWorld();
     grp.getWorldQuaternion(gq).invert();
+    const center=(plates.length-1)/2;
+    const zGap=(V.mob?.038:.027)*(1+1.7*stackCameraPull);
+    const xFan=(V.mob?.024:.014)*stackCameraPull;
+    const focusClearance=V.mob?Math.max(1.18,camDist*.14):Math.max(.9,camDist*.12);
+    const focusDistance=dist-focusClearance;
+
     plates.forEach((o,i)=>{
       const ki=E.back(clamp(st.intro*1.7-i*.17)),kk=i===st.show?st.k:0;
       const y=o.base+(1-ki)*5+st.out*i*GAP*4;
-      o.g.position.set(0,y,0);o.g.quaternion.identity();o.g.scale.setScalar(1);
+      const layer=i-center;
+      o.g.position.set(layer*xFan,y,layer*zGap);
+      o.g.quaternion.identity();o.g.scale.setScalar(1);
       if(kk>0){
-        tv.set(V.w>1100?.2:0,V.mob?.12:0,-(camDist*(V.mob?.9:.84))).applyQuaternion(cam.quaternion).add(cam.position);grp.worldToLocal(tv);
+        // Raise the active plate during the transition so it clears the stack
+        // instead of slicing through the other horizontal plates.
+        tv.set(V.w>1100?.2:0,V.mob?.12:0,-focusDistance)
+          .applyQuaternion(cam.quaternion).add(cam.position);
+        grp.worldToLocal(tv);
         tq.copy(gq).multiply(cam.quaternion).multiply(qFace);
-        o.g.position.lerp(tv,kk);o.g.quaternion.slerp(tq,kk);o.g.scale.setScalar(1+kk*.08);
+        o.g.position.lerp(tv,kk);
+        o.g.position.y+=Math.sin(Math.PI*kk)*(V.mob?.45:.30);
+        o.g.quaternion.slerp(tq,kk);
+        o.g.scale.setScalar(1+kk*.08);
       }
       o.g.visible=ki>.001&&st.out<.99;
     });
