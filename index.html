@@ -2407,7 +2407,12 @@ function prewarm(){
 }
 function frame(dt,t,frameMs=dt*1000){
   if(lost)return;
-  let best=null,bw=0;for(const s of SCN){if(!s.want())continue;const w=vis(s);if(w>bw){bw=w;best=s}}
+  let best=null,bw=0;
+  for(const s of SCN){if(!s.want())continue;const w=vis(s);if(w>bw){bw=w;best=s}}
+  // A small scroll bounce near a chapter boundary can make two pinned scenes
+  // trade a single shared canvas repeatedly, which flashes on some mobile GPUs.
+  // Hold the previous visible chapter until the replacement wins decisively.
+  if(best && cur && best!==cur && cur.want() && vis(cur)>.02 && bw<vis(cur)+.08)best=cur;
   if(best!==cur){if(best){prepare(best);best.slot.appendChild(canvas)}cur=best;if(cur)size();}
   prewarm();
   if(!cur){PERF.stage=null;if(perfOutput)perfOutput.textContent='等待 3D 場景…';return}
