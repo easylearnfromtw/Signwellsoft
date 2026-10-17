@@ -1140,9 +1140,28 @@ const E={
 };
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const root=document.documentElement;
-/* Run a visual, fully navigable Lite site on mobile without loading Three.js.
-   Append ?full3d=1 only for opt-in troubleshooting. */
-const MOBILE_LITE=matchMedia('(max-width:760px)').matches && new URLSearchParams(location.search).get('full3d')!=='1';
+/* Show the full 3D site on every capable device. Lite is a real fallback,
+   enabled explicitly (?lite=1) or when WebGL2 cannot be created. */
+const SW_PARAMS=new URLSearchParams(location.search);
+function signwellWebGLReady(){
+  try{
+    const probe=document.createElement('canvas');
+    const gl=probe.getContext('webgl2',{alpha:false,antialias:false});
+    if(!gl)return false;
+    gl.getExtension('WEBGL_lose_context')?.loseContext();
+    return true;
+  }catch(_){return false}
+}
+const MOBILE_LITE=SW_PARAMS.get('lite')==='1'||!signwellWebGLReady();
+function signwellUseLite(error){
+  if(SW_PARAMS.get('lite')==='1')return;
+  console.warn('[SIGNWELL] WebGL 3D unavailable; switching to accessible Lite view',error);
+  const url=new URL(location.href);
+  url.searchParams.set('lite','1');
+  url.searchParams.delete('full3d');
+  location.replace(url.toString());
+}
+window.SIGNWELL_FALLBACK=signwellUseLite;
 root.classList.add('js');
 if(MOBILE_LITE){root.classList.add('mobile-lite','no-gl');root.dataset.renderMode='lite'}
 const V={w:innerWidth,h:innerHeight,mob:innerWidth<=760,dpr:Math.min(devicePixelRatio||1,2)};
@@ -1717,7 +1736,7 @@ function frame(now){
   raf=0;if(document.hidden)return;
   const frameMs=now-last,dt=Math.min(.05,Math.max(.001,frameMs/1000));last=now;const t=now/1000;
   Play.update();
-  if(!MOBILE_LITE){for(const m of MODS){if(m.active())m.update(dt,t)}if(window.GLFRAME)window.GLFRAME(dt,t,frameMs)}
+  if(!MOBILE_LITE){for(const m of MODS){if(m.active())m.update(dt,t)}if(window.GLFRAME){try{window.GLFRAME(dt,t,frameMs)}catch(e){signwellUseLite(e);return}}}
   chrome();
   if(!MOBILE_LITE)raf=requestAnimationFrame(frame);
 }
@@ -1736,8 +1755,9 @@ if(!document.hidden)raf=requestAnimationFrame(frame);
 
 </script>
 <script type="module">
-/* One WebGL context on desktop; mobile Lite never imports the 670 KB 3D engine. */
+/* WebGL2-capable mobile and desktop both get 3D; Lite never imports Three.js. */
 if(!MOBILE_LITE){
+try{
 const THREE=await import('./assets/three.module.min.js');
 const T=THREE;
 const UA=navigator.userAgent;
@@ -1748,8 +1768,9 @@ const TIER=MOB?((CORES>=6&&(devicePixelRatio||1)>=2)?1:0):2;
    Reduce geometry/effects on phones instead of shrinking the drawing buffer. */
 const Q={shadow:MOB?512:2048,tex:MOB?.75:1,seg:[.3,.45,1][TIER]};
 const TARGET_FPS=MOB?60:110,SHORT_EDGE=MOB?850:1440;
+const QUALITY={scale:1,slow:0,fast:0};
 let dpr=1;
-const PERF=window.SIGNWELL_PERF={targetFPS:TARGET_FPS,frameBudgetMs:1000/TARGET_FPS,profile:MOB?'mobile-light':'desktop',width:0,height:0,fps:0,frameMs:0,cpuMs:0,drawCalls:0,triangles:0,stage:null};
+const PERF=window.SIGNWELL_PERF={targetFPS:TARGET_FPS,frameBudgetMs:1000/TARGET_FPS,profile:MOB?'mobile-adaptive':'desktop',width:0,height:0,fps:0,frameMs:0,cpuMs:0,drawCalls:0,triangles:0,qualityScale:1,stage:null};
 /* Optional on-device check. Nothing is added to the normal visitor interface. */
 let perfOutput;
 if(new URLSearchParams(location.search).get('perf')==='1'){
@@ -1826,13 +1847,13 @@ function vis(s){const t=stageTop(s.pin);return 1-Math.min(1,Math.abs(t)/V.h)}
 function size(){
   if(!cur)return;const sw=cur.slot.clientWidth,sh=cur.slot.clientHeight;if(!sw||!sh)return;
   const limit=Math.min(R.capabilities.maxTextureSize,R.getContext().getParameter(R.getContext().MAX_RENDERBUFFER_SIZE));
-  dpr=MOB?Math.min(1.5,SHORT_EDGE/Math.min(sw,sh),limit/Math.max(sw,sh)):Math.min(Math.max(1,SHORT_EDGE/Math.min(sw,sh)),limit/Math.max(sw,sh));
+  dpr=MOB?Math.min(1.5*QUALITY.scale,SHORT_EDGE*QUALITY.scale/Math.min(sw,sh),limit/Math.max(sw,sh)):Math.min(Math.max(1,SHORT_EDGE/Math.min(sw,sh)),limit/Math.max(sw,sh));
   const nw=Math.round(sw*dpr),nh=Math.round(sh*dpr);
   if(nw!==W||nh!==H){W=nw;H=nh;R.setSize(W,H,false)}
   PERF.width=W;PERF.height=H;cur.resize(sw,sh);
   lastShadow=-Infinity;
 }
-canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true});
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;window.SIGNWELL_FALLBACK(new Error('WebGL context lost'))});
 canvas.addEventListener('webglcontextrestored',()=>{lost=false;size();lastShadow=-Infinity});
 function render(scene,cam,p){
   const t=performance.now()/1000;
@@ -1864,7 +1885,24 @@ function frame(dt,t,frameMs=dt*1000){
   PERF.cpuMs=PERF.cpuMs*.9+(performance.now()-started)*.1;
   PERF.drawCalls=R.info.render.calls;PERF.triangles=R.info.render.triangles;
   frameTotal+=frameMs;frameCount++;
-  if(frameTotal>=1000){PERF.fps=1000*frameCount/frameTotal;frameTotal=0;frameCount=0;if(perfOutput)perfOutput.textContent=`${W} × ${H} · rAF ${PERF.fps.toFixed(1)} fps`}
+  if(frameTotal>=1000){
+     PERF.fps=1000*frameCount/frameTotal;
+     /* Back off the GPU drawing buffer after sustained slow frames, and
+        restore sharpness only after several seconds of headroom. */
+     if(MOB&&frameCount>=10){
+       QUALITY.slow=PERF.fps<44?QUALITY.slow+1:0;
+       QUALITY.fast=PERF.fps>57?QUALITY.fast+1:0;
+       if(QUALITY.slow>=2&&QUALITY.scale>.65){
+         QUALITY.scale=Math.max(.65,Math.round((QUALITY.scale-.1)*100)/100);
+         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;size();
+       }else if(QUALITY.fast>=5&&QUALITY.scale<1){
+         QUALITY.scale=Math.min(1,Math.round((QUALITY.scale+.05)*100)/100);
+         QUALITY.slow=QUALITY.fast=0;PERF.qualityScale=QUALITY.scale;size();
+       }
+     }
+     frameTotal=0;frameCount=0;
+     if(perfOutput)perfOutput.textContent=`${W} × ${H} · rAF ${PERF.fps.toFixed(1)} fps · GPU ${Math.round(QUALITY.scale*100)}%`
+   }
 }
 /* Let the browser present between expensive texture generation/upload jobs. */
 const textureTasks=[];let textureRunning=false;
@@ -2425,8 +2463,9 @@ GLX.add(S);
 }
 
 
-window.GLFRAME=frame;root.classList.add('gl-on');root.classList.remove('no-gl');
-} // end desktop / explicit ?full3d=1 renderer
+window.GLFRAME=frame;root.classList.add('gl-on');root.classList.remove('no-gl');root.dataset.renderMode='3d';
+}catch(e){window.SIGNWELL_FALLBACK(e)}
+} // end 3D renderer (mobile and desktop)
 
 </script>
 </body>
